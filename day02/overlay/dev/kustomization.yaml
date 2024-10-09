@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+namePrefix: dev-
+commonLabels:
+  env: dev
+images:
+  - name: quay.io/redhattraining/versioned-hello
+    newTag: v1.1

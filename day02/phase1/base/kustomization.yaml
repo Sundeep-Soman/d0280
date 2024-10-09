@@ -1,0 +1,4 @@
+resources:
+  - deploymnt.yaml
+commonLabels:
+  org: GEOJIT

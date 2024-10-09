@@ -1,0 +1,368 @@
+    1  sudo reboot
+    2  oc whoami 
+    3  ssh lab@utitlty
+    4  ssh lab@utility
+    5  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP https://console-openshift-console.apps.ocp4.example.com
+    6  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP https://console-openshift-console.apps.ocp4.example.com:6443
+    7  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP https://api.ocp4.example.com:6443
+    8  oc whoami 
+    9  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP https://api.ocp4.example.com:6443
+   10  nc -v https://api.ocp4.example.com:6443
+   11  nc -v api.ocp4.example.com 6443
+   12  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP https://api.ocp4.example.com:6443
+   13  # oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP https://api.ocp4.example.com:6443
+   14  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+   15  yum provides htpasswd
+   16  oc get co | grep oauth
+   17  oc whoami 
+   18  whatis htpasswd 
+   19  htpasswd -c htpasswd -B geojit 
+   20  #htpasswd -B  -c htpasswd geojit 
+   21  #htpasswd -B  -c htpasswd geojit  --- any name and pasword will asked -B is the algorith
+   22  htpasswd -B  -c htpasswd geojit 
+   23  cat htpasswd 
+   24  #htpasswd -B htpasswd alice -- adding another user, and no need to add -c, it will overwirte
+   25  htpasswd -B htpasswd alice
+   26  cat htpasswd 
+   27  #use this file to modify the oauth
+   28  #identity provide is htpaswd nowd and need to set this file
+   29  #oc create secret generic htpasswd-secret --from-file htpasswd=/home/student/htpasswd -n openshift-config
+   30  history 
+   31  #oc create secret generic myhtpasswd-secret --from-file htpasswd=/home/student/htpasswd -n openshift-config
+   32  oc get secrets -n openshift-config
+   33  oc create secret generic myhtpasswd-secret --from-file htpasswd=/home/student/htpasswd -n openshift-config
+   34  oc get secrets -n openshift-config
+   35  oc get secrets/myhtpasswd-secret
+   36  oc extract secret
+   37  oc extract secret/myhtpassword-secret
+   38  history 
+   39  oc get secrets/myhtpasswd-secret
+   40  oc get secrets/myhtpasswd-secret -n openshift-config
+   41  oc get secrets/myhtpasswd-secret -n openshift-config -o yaml
+   42  #oc get secrets/myhtpasswd-secret -n openshift-config -o yaml
+   43  oc extract secrets/myhtpasswd-secret -n openshift-config
+   44  cat htpasswd 
+   45  oc get oauth/cluster 
+   46  oc get oauth/cluster -o yaml
+   47  #oc get oauth/cluster -o yaml -- only ldap provider is there
+   48  oc explain oauth.spec
+   49  #oc explain oauth.spec -- check what are need for htpasswd
+   50  oc explain oauth.spec.htpasswd
+   51  oc explain oauth.spec.identityProviders.htpasswd
+   52  #oc explain oauth.spec.identityProviders.htpasswd -- can see what are to be required to ad htpasswd 
+   53  oc get pods -n openshift-authentication
+   54  #oc get pods -n openshift-authentication  -- this pod will update when conf changed
+   55  oc edit oauth/cluster 
+   56  oc edit oauth/cluster  -o yaml
+   57  oc get oauth/cluster  -o yaml
+   58  oc get oauth/cluster  -o yaml > backup.yaml
+   59  oc edit oauth/cluster 
+   60  oc get pods -n openshift-authentication
+   61  history 
+   62  oc get pods -n openshift-authentication
+   63  watch oc get pods -n openshift-authentication
+   64  #watch oc get pods -n openshift-authentication -- new pod created
+   65  oc edit oauth/cluster 
+   66  oc get oauth/cluster  -o yaml > edited.yaml
+   67  oc whoami --show-console
+   68  oc get pods -n openshift-authentication
+   69  oc describe pods -n openshift-authentication
+   70  #oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+   71  oc login -u geojit -p redhat https://api.ocp4.example.com:6443
+   72  oc whoami 
+   73  #oc login -u geojit -p redhat https://api.ocp4.example.com:6443  -- geojit-redhat logined
+   74  oc login -u geojit -p redhat https://api.ocp4.example.com:6443
+   75  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+   76  oc get user
+   77  oc get user | grep geojit
+   78  #oc get user | grep geojit -- will show entry if the user even login once
+   79  #add another user in htpasswd and authenticate
+   80  ll
+   81  oc login -u alice https://api.ocp4.example.com:6443
+   82  #oc login -u alice https://api.ocp4.example.com:6443 -- alice-alice
+   83  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+   84  htpasswd -B htpasswd sundeep
+   85  oc get secrets 
+   86  oc get secrets -n openshift-config
+   87  #oc get secrets -n openshift-config -- need to update the secret myhtpasswd-secret
+   88  oc edit secrets/myhtpasswd-secret -n openshift-config
+   89  oc get secrets -n openshift-config
+   90  #oc set data secret/myhtpasswd-secret --from-file=htpasswd=/home/
+   91  ll
+   92  pwd
+   93  #oc set data secret/myhtpasswd-secret --from-file=htpasswd=/home/student/htpasswd -n openshift-config
+   94  oc describe  myhtpasswd-secret -n openshift-config
+   95  oc get myhtpasswd-secret -n openshift-config
+   96  oc get secret/myhtpasswd-secret -n openshift-config
+   97  oc describe secret/myhtpasswd-secret -n openshift-config
+   98  #oc get secret/myhtpasswd-secret -n openshift-config
+   99  #oc describe secret/myhtpasswd-secret -n openshift-config
+  100  oc set data secret/myhtpasswd-secret --from-file=htpasswd=/home/student/htpasswd -n openshift-config
+  101  oc describe secret/myhtpasswd-secret -n openshift-config
+  102  oc get secret/myhtpasswd-secret -n openshift-config
+  103  oc edit secrets/myhtpasswd-secret
+  104  oc edit secrets/myhtpasswd-secret -n openshift-config
+  105  oc get pods -n openshift-authentication
+  106  #oc set data secret/myhtpasswd-secret --from-file=htpasswd=/home/student/htpasswd -n openshift-config --- update the secret with new data and wait for the oauth pod to recreate
+  107  oc get pods -n openshift-authentication
+  108  #login sucess for sundeep sundeep
+  109  #now delete a user who left the orgnization-- delete from htpass/update secret/ also if the user logined once those data will be on the cluster and need to delete that also
+  110  cat htpasswd 
+  111  htpasswd -h
+  112  htpasswd -D alice
+  113  history 
+  114  htpasswd -D htpasswd alice
+  115  cat htpasswd 
+  116  #htpasswd -D htpasswd alice --delete the user from htpasswd
+  117  oc set data secret/myhtpasswd-secret --from-file=htpasswd=/home/student/htpasswd -n openshift-config
+  118  #oc set data secret/myhtpasswd-secret --from-file=htpasswd=/home/student/htpasswd -n openshift-config -- updated htpasswd
+  119  oc get pods -n openshift-authentication
+  120  watch oc get pods -n openshift-authentication
+  121  oc get user
+  122  cat htpasswd 
+  123  oc login -u alice https://api.ocp4.example.com:6443
+  124  oc whoami 
+  125  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  126  cat htpasswd 
+  127  oc set data secret/myhtpasswd-secret --from-file=htpasswd=/home/student/htpasswd -n openshift-config
+  128  cat htpasswd 
+  129  watch oc get pods -n openshift-authentication
+  130  ll
+  131  cat htpasswd 
+  132  oc get secret -n openshift-config 
+  133  oc extract secret/myhtpasswd-secret -n openshift-config --to=/tmp --confirm 
+  134  cat /tmp/htpasswd 
+  135  oc get pods -n openshift-authentication
+  136  oc get user 
+  137  oc login -u alice https://api.ocp4.example.com:6443
+  138  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  139  #oc extract secret/myhtpasswd-secret -n openshift-config --to=/tmp --confirm --- check secret data
+  140  #oc get user -- check the user
+  141  oc get identity
+  142  #oc get identity -- check identity
+  143  #alice was deleted from secret but still able to login since she logined once and both user and identiy still exists
+  144  oc delete user alice
+  145  oc delete identity alice
+  146  oc get identity
+  147  oc delete identity alice
+  148  oc delete identity myusers:alice
+  149  #oc delete identity myusers:alice ---deletd identity
+  150  #oc delete user alice  -- deleted user
+  151  #now all access gone
+  152  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  153  htpasswd -n -B mydev
+  154  #Type of users --- kubeadmin,system user, regular user, sa
+  155  os whoani
+  156  oc whoami 
+  157  oc whoami --show-server 
+  158  oc login -u sundeep -p sundeep https://api.ocp4.example.com:6443
+  159  oc new-project myproject-sun
+  160  oc get sa
+  161  oc get secret
+  162  oc describe sa default 
+  163  oc describe get secret
+  164  oc] get secret
+  165  oc get secret
+  166  oc get secrets -n openshift-config
+  167  #role can be assgined to namesapce or cluster
+  168  #type of roles can assign in a project: admin,edit,view,cluster-domain,self-provisioner
+  169  history 
+  170  oc whoami 
+  171  oc get project
+  172  oc get rolebinding
+  173  oc policy who-can create project
+  174  #oc policy who-can create project -- asking system who can
+  175  oc get clusterrole | grep -i self
+  176  oc describe clusterrole self-provisioner 
+  177  oc get clusterrolebindings | grep self
+  178  oc get clusterrolebindings | grep -i self
+  179  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  180  oc get clusterrolebindings | grep self
+  181  oc describe clusterrole self-provisioner 
+  182  oc describe clusterrolebindings self-provisioner 
+  183  #every user who sucessfully logined in via oauth will assgin to group  Group  system:authenticated:oauth so will get self-provisioner 
+  184  ########
+  185  oc adm policy -H
+  186  oc adm policy -h
+  187  #oc adm policy -h   -- add a cluser role to a user
+  188  #oc policy -- add a project level to user
+  189  oc policy -h
+  190  oc adm policy add-cluster-role-to-user cluster-admin geojit
+  191  #oc adm policy add-cluster-role-to-user cluster-admin geojit -- set geojit as admin
+  192  oc project
+  193  #now in myproject-sun
+  194  oc get rolebinding -o yaml
+  195  oc get rolebinding -o wide
+  196  oc policy add-role-to-user view geojit -n myproject-sun
+  197  #oc policy add-role-to-user view geojit -n myproject-sun  -- set sundeep to view on the project
+  198  oc get rolebinding -o wide
+  199  htpasswd -n -B mydev
+  200  #htpasswd -n -B mydev --- details genrated and this can be added via console to update the secret
+  201  oc whoami 
+  202  oc get pods -n openshift-authentication
+  203  oc login -u mydev -p mydev 
+  204  oc whoami 
+  205  oc whoami --show-server 
+  206  #now user mydev able to login
+  207  oc project
+  208  oc projects
+  209  oc get project
+  210  oc whoami 
+  211  history 
+  212  oc whoami 
+  213  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  214  oc project
+  215  oc projects
+  216  #now user mydev able to login
+  217  oc login -u mydev -p mydev 
+  218  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  219  oc get user
+  220  htpasswd -n -B alice
+  221  oc get rolebinding
+  222  oc get rolebinding cluster-admin 
+  223  oc get rolebinding cluster-admin -o wide
+  224  oc describe rolebinding cluster-admin 
+  225  oc adm groups --elp 
+  226  oc adm groups --help 
+  227  oc adm groups ocpadmins
+  228  oc adm groups
+  229  oc wh
+  230  oc whoami
+  231  oc get group 
+  232  oc get clusterrolebinding -A | grep cluster-admin
+  233  oc describe cluster-admin-1
+  234  oc describe clusterrolebindings cluster-admin-1
+  235  #oc get clusterrolebinding -A | grep cluster-admin
+  236  oc get clusterrolebinding -A | grep geojit
+  237  oc describe clusterrolebinding -A | grep geojit
+  238  ##how to check geojits rolebinding (now admin)
+  239  oc whoami 
+  240  oc login geojit
+  241  oc login -u geojit
+  242  oc whoami 
+  243  oc new-project orange
+  244  oc project
+  245  oc get user
+  246  #oc policy add-role-to-user edit suneep -n orange  -- addig edit permission to sundeep to orange project
+  247  oc policy add-role-to-user edit suneep -n orange
+  248  oc policy add-role-to-user edit sundeep -n orange
+  249  oc get clusterrolebindings.
+  250  oc get clusterrolebindings | grep sundeep
+  251  oc get rolebindings
+  252  oc get rolebindings -o wide
+  253  #oc get rolebindings -o wide -- verify the edit role is there
+  254  oc get rolebindings -o wide
+  255  oc policy -h
+  256  oc policy remove-role-from-user edit suneep -n orang
+  257  oc get rolebindings -o wide
+  258  oc policy remove-role-from-user edit suneep -n orang
+  259  oc whoami 
+  260  l
+  261  oc get rolebinding
+  262  oc get rolebinding -o wide 
+  263  oc policy remove-role-from-user edit suneep
+  264  oc policy remove-role-from-user edit sundeep
+  265  oc get rolebinding -o wide 
+  266  #oc policy remove-role-from-user edit suneep -- removed the role binding
+  267  oc policy add-role-to-user edit sundeep -n orange
+  268  oc get rolebinding -o wide 
+  269  oc login sundeep
+  270  oc login -u sundeep
+  271  oc project
+  272  oc new-app --name=myapp quay.io/redhattrainig/hello-world-nginx:v1.0
+  273  oc new-app --name=myapp quay.io/redhattraining/hello-world-nginx:v1.0
+  274  oc get all
+  275  oc expose service/myapp 
+  276  oc get routes.route.openshift.io 
+  277  curl myapp-orange.apps.ocp4.example.com
+  278  oc get deployment
+  279  oc get all
+  280  oc get deployment
+  281  oc scale deployment/myapp --replicas=5
+  282  oc get po
+  283  oc scale deployment/myapp --replicas=1
+  284  oc get deployment
+  285  ####
+  286  oc describe 
+  287  oc describe project orange 
+  288  oc get  resourcequotas 
+  289  oc get limitranges 
+  290  #resorcequota-- cout of object
+  291  #resorcequota-- count of object
+  292  #resourcelimit-- per pod or per container resource limit (image size and no of image)--cpu mem etc
+  293  oc create quota -h 
+  294  q
+  295  oc get pods 
+  296  oc get deployment 
+  297  oc scale deploy/myapp --replicas=5
+  298  oc get pod 
+  299  oc get events 
+  300  oc get deploy
+  301  oc get resourcequotas 
+  302  oc describe resourcequotas example
+  303  oc delete resourcequotas example
+  304  oc login -u geojit
+  305  oc delete resourcequotas example
+  306  oc get limitranges 
+  307  oc adm top pod
+  308  oc get pod -o wide 
+  309  oc get limitranges 
+  310  oc describe limitranges mem-limit-range 
+  311  oc get pod -o wide 
+  312  ###
+  313  oc whoami 
+  314  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  315  #project template
+  316  #policy for org to set limitation to a project
+  317  oc adm create-bootstrap-project-template -o yaml
+  318  oc adm create-bootstrap-project-template -o yaml > template.yaml
+  319  vim template.yaml 
+  320  #need to add quota definition to the template yaml
+  321  oc create quota project-quota --hard=pods=3,secrets=10 --dry-run=server -o yaml
+  322  #oc create quota project-quota --hard=pods=3,secrets=10 --dry-run=server -o yaml --- got the quota settings
+  323  vim template.yaml 
+  324  oc create quota project-quota --hard=pods=3,secrets=10 --dry-run=server -o yaml > quota.yaml
+  325  vim quota.yaml 
+  326  #edite quota.yaml to remove unwanted lines
+  327  vim template.yaml 
+  328  #added values to template.yaml 
+  329  ll
+  330  oc get template -n openshift-config
+  331  oc apply -f template.yaml -n openshift-config --- created the template inside the openshift-config namespace to apply for all new projects
+  332  #oc apply -f template.yaml -n openshift-config --- created the template inside the openshift-config namespace to apply for all new projects
+  333  #oc get template -n openshift-config -- check any existing template is there
+  334  oc apply -f template.yaml -n openshift-config
+  335  oc get template -n openshift-config
+  336  oc get projects.config.openshift.io/cluster -o yaml
+  337  #oc get projects.config.openshift.io/cluster -o yaml ---  manifest for the default project creation details, and add new template resource to apply 
+  338* 
+  339  oc edit projects.config.openshift.io/cluster 
+  340  oc get projects.config.openshift.io/cluster -o yaml > oldtemplate.yaml
+  341  ll
+  342  oc edit projects.config.openshift.io/cluster 
+  343  #oc edit projects.config.openshift.io/cluster --- added our template name to this
+  344  oc get pods -n openshift-apiserver
+  345  #oc get pods -n openshift-apiserver --- when edited the default template file,all api pods in master will restart
+  346  oc get pods -n openshift-apiserver
+  347  watch oc get pods -n openshift-apiserver
+  348  #this can take upto 15 min
+  349  watch oc get pods -n openshift-apiserver
+  350  oc whoami 
+  351  oc login -u geojit
+  352  oc projects
+  353  oc get users
+  354  oc login -u sundeep
+  355  oc new-project new-template
+  356  oc describe project new-template 
+  357  oc get rolebinding -o wide 
+  358  #created a new project in a user and can see the quotas are set by default
+  359  oc edit projects.config.openshift.io/cluster 
+  360  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  361  oc edit projects.config.openshift.io/cluster 
+  362  vim template.yaml 
+  363  ll
+  364  oc login -u sundeep
+  365  oc describe project new-template 
+  366  oc describe project orange 
+  367  ll
+  368  history > day-01.txt

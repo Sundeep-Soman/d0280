@@ -1,0 +1,1000 @@
+  359  #created a new project in a user and can see the quotas are set by default
+  360  oc edit projects.config.openshift.io/cluster 
+  361  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  362  oc edit projects.config.openshift.io/cluster 
+  363  vim template.yaml 
+  364  ll
+  365  oc login -u sundeep
+  366  oc describe project new-template 
+  367  oc describe project orange 
+  368  ll
+  369  history > day-01.txt
+  370  vim day-01.txt 
+  371  htpasswd -h
+  372  vim day-01.txt 
+  373  htpasswd -h
+  374  vim day-01.txt 
+  375  oc get pods -n openshift-authentication
+  376  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  377  oc get pods -n openshift-authentication
+  378  vim day-01.txt 
+  379  ll
+  380  cat backup.yaml 
+  381  ll
+  382  cat edited.yaml 
+  383  vim day-01.txt 
+  384  cat day-01.txt 
+  385  vim com.txt
+  386  cat com.txt 
+  387  oc get clusterrolebindings -A
+  388  cat com.txt 
+  389  oc get clusterrolebindings -A | grep cluster-admin
+  390  cat com.txt 
+  391  oc describe cluster-admin-q
+  392  oc describe clusterrolebindings cluster-admin
+  393  oc describe clusterrolebindings cluster-admin-0
+  394  oc describe clusterrolebindings cluster-admin-1
+  395  cat com.txt 
+  396  oc get clusterrolebinding -A | grep cluster-admin
+  397  cat com.txt 
+  398  oc get clusterrolebinding -A | grep geojit
+  399  oc describe clusterrolebinding -A | grep geojit
+  400  vim day-01.txt 
+  401  cat template.yaml 
+  402  cat quota.yaml 
+  403  vim day-01.txt 
+  404  ll
+  405  cat oldtemplate.yaml 
+  406  ll
+  407  cat template.yaml 
+  408  oc get  template -n openshift-config
+  409  oc edit projects.config.openshift.io 
+  410  vim day-01.txt 
+  411  #Day 02
+  412  lll
+  413  ll
+  414  oc whoami -t
+  415  oc whoami -c
+  416  oc project
+  417  oc describe project
+  418  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  419  oc projects
+  420  :q!
+  421  vim day-01.txt 
+  422  oc describe project orange 
+  423  oc projects
+  424  oc project myproject-sun 
+  425  oc describe project
+  426  oc get clusterversions
+  427  #oc get clusterversions ---check the upadates from internet or using a middleman
+  428  #oc get nodes -- will show k8 version
+  429  oc project
+  430  oc projects
+  431  oc get markeplaces
+  432  oc get catalogsources -A
+  433  #oc get catalogsources -A -- available repo sorces
+  434  #operatoehub.io -- can get all images
+  435  #operatorhub can ve resrticted to use secure image inside the cluster
+  436  #imarative Vs decalarative
+  437  oc get aall
+  438  oc get all
+  439  oc whoami 
+  440  oc get -A
+  441  #nake pods -- one who haven't any manager
+  442  ll
+  443  mkdir Day1
+  444  find . -type -f
+  445  find . -typef
+  446  find . -type f
+  447  find . maxdepth=1 -type f 
+  448  find . maxdepth=0 -type f 
+  449  ll
+  450  mkdir Day2
+  451  cd Day2
+  452  ll
+  453  kubectl create deployment myweb --image=quay.io/redhattraining/hello-world-nginx:v1.0 --dry-run=server -o yaml
+  454  kubectl create deployment myweb --image=quay.io/redhattraining/hello-world-nginx:v1.0 --dry-run=server -o yaml > deploymnt.yaml
+  455  vim deploymnt.yaml 
+  456  kubectl apply -f deploymnt.yaml 
+  457  kubectl get deploy
+  458  oc get po
+  459  kubectl exec -it myweb-86b7c84776-hqwd5 -- curl localhost:8080
+  460  kubectl exec myweb-86b7c84776-hqwd5 -- curl localhost:8080
+  461  #kubectl exec -it myweb-86b7c84776-hqwd5 -- curl localhost:8080 --- check app is running
+  462  kubectl exec -it myweb-86b7c84776-hqwd5 -- curl localhost:8080
+  463  kubectl create deployment myweb --image=quay.io/redhattraining/hello-world-nginx:v1.0 --dry-run=server --validate=true -o yaml > deploymnt.yaml
+  464  #kubectl create deployment myweb --image=quay.io/redhattraining/hello-world-nginx:v1.0 --dry-run=server --validate=true -o yaml > deploymnt.yaml  ----- will validate typo also
+  465  ll
+  466  kubectl diff -f deploymnt.yaml 
+  467  kubectl get po
+  468  kubectl edit deploy deploymn
+  469  kubectl edit deploy deploymnt
+  470  kubectl get deploy
+  471  kubectl edit deploy myweb
+  472  kubectl get po
+  473  kubectl diff -f deploymnt.yaml 
+  474  cat deploymnt.yaml 
+  475  ll
+  476  kubectl create deployment myweb --image=quay.io/redhattraining/hello-world-nginx:v1.0 --dry-run=server --validate=true -o yaml > deploymnt.yaml
+  477  kubectl get deploy myapp -o yaml
+  478  #kubectl diff -f deploymnt.yaml --- can compare local file and cluster manifest changes
+  479  kubectl create deployment myweb --image=quay.io/redhattraining/hello-world-nginx:v1.0 --dry-run=client -o yaml > deploymnt.yaml
+  480  ll
+  481  cat deploymnt.yaml 
+  482  kubectl diff -f deploymnt.yaml 
+  483  #Kustomizatio --- 2 director -- base and overlay
+  484  kubectl delete -f deploymnt.yaml 
+  485  kubectl get all
+  486  ll
+  487  >deploymnt.yaml 
+  488  kubectl create deployment myweb --image=quay.io/redhattraining/hello-world-nginx:v1.0 --dry-run=server --validate=true -o yaml > deploymnt.yaml
+  489  #created a deployment
+  490  mkdir base && mkdir overlay
+  491  #created both folders
+  492  mkdir -p overlay/dev && mkdir -p overlay/prod
+  493  #created subdirectories
+  494  ll
+  495  tree 
+  496  mv deploymnt.yaml base/
+  497  #moved yaml to base
+  498  #all required default should be in base and what are to be changed in overlay
+  499  ll
+  500  kubectl apply -k base/
+  501  #will throw error since kustomization.yaml is created with specificaions
+  502  vim base/kustomization.yaml
+  503  cat base/
+  504  ll base/
+  505  vim base/kustomization.yaml
+  506  cat base/kustomization.yaml 
+  507  #defined resource in kustomization
+  508  ll
+  509  tr
+  510  tree 
+  511  kubectl get all
+  512  kubectl apply -k base/
+  513  kubectl get all
+  514  #app deployed
+  515  kubectl exec -it pod/myweb-86b7c84776-772ht -- curl localhost:8080
+  516  #app is working
+  517  cat base/deploymnt.yaml 
+  518  ll
+  519  kubectl delete -k base/
+  520  vim base/deploymnt.yaml 
+  521  kubectl apply -k base/
+  522  kubectl get all
+  523  kubectl exec -it pod/myweb-86b7c84776-772ht -- curl localhost:8080
+  524  kubectl exec -it pod/myweb-6b7c574464-54mbf -- curl localhost:8080
+  525  kubectl exec -it pod/myweb-86b7c84776-772ht -- curl localhost:8080
+  526  kubectl exec -it pod/myweb-6b7c574464-54mbf -- curl localhost:8080
+  527  #delete the deployment for now to make changes
+  528  kubectl delete -k base/
+  529  kubectl get all
+  530  tree 
+  531  cp base/kustomization.yaml overlay/dev/
+  532  vim overlay/dev/kustomization.yaml 
+  533  #CREATED overlay/dev/kustomization.yaml AND DEFINED BASE PATH
+  534  #NEED TO DEFINE WHAT CHANGES ARE REQUIRED WHEN DEPLLOYED FROM DEV
+  535  vim overlay/dev/kustomization.yaml 
+  536  #ADDED A PREFIX IN DEV
+  537  vim base/kustomization.yaml 
+  538  #ADDED COMMON LABEL IN THE BASE SO ALL RESOUCE HAVE THE SAME LABEL
+  539  #IT WILL ALSO APPLIED WHEN DEPLOYED FROM DEV
+  540  vim overlay/dev/kustomization.yaml 
+  541  #NOW ADDED IN DEV A LABEL AND IT WILL OVERIDE THE BASE LABEL
+  542  cat base/kustomization.yaml 
+  543  cat overlay/dev/kustomization.yaml 
+  544  kubectl apply -k base/
+  545  kubectl get all
+  546  kubectl get all --show-labels
+  547  #DEPLOYED FROM BASE AND ITS SHOWING GEOJIT AS THE LABEL
+  548  kubectl apply -k overlay/dev/
+  549  kubectl get all --show-labels
+  550  ll
+  551  cat base/kustomization.yaml 
+  552  cat overlay/dev/kustomization.yaml 
+  553  kubectl kustomize overlay/dev/
+  554  #kubectl kustomize overlay/dev/ -- this will show what will be deployed as manifest
+  555  ll
+  556  cp overlay/dev/kustomization.yaml cp overlay/prod/
+  557  cp overlay/dev/kustomization.yaml cp overlay/prod/kustomization.yaml 
+  558  ll
+  559  tree 
+  560  vim overlay/prod/kustomization.yaml 
+  561  kubectl apply -f overlay/prod/
+  562  tree 
+  563  vim overlay/prod/kustomization.yaml 
+  564  kubectl apply -f overlay/prod/
+  565  kubectl apply -k overlay/prod/
+  566  #NOW ADDED PROD DETAILS AND APPLIED
+  567  kubectl get all
+  568  kubectl get all --show-labels
+  569  kubectl get po --show-labels
+  570  kubectl exec -it dev-myweb-6886b7c78b-f65hf -- curl localhost:8080
+  571  kubectl exec -it prod-myweb-6c4cffb86-fmvkn -- curl localhost:8080
+  572  kubectl exec -it myweb-7d84d75bdd-qjfb9 -- curl localhost:8080
+  573  #ALL POD HAS SAME CONTENT
+  574  ll
+  575  cd ..
+  576  ll
+  577  cd Day2/
+  578  ll
+  579  mkdir phase1
+  580  cp -r base/ phase1/
+  581  cp -r overlay/ phase1/
+  582  ll
+  583  oc delete -k base/
+  584  oc delete -k overlay/dev/
+  585  oc delete -k overlay/prod/
+  586  #NOW IMAGES NEED TO BE CHNGED IN EACH ENV
+  587  #DELETE ALL DEPLOYMENTS
+  588  vvim overlay/dev/kustomization.yaml 
+  589  vim overlay/dev/kustomization.yaml 
+  590  kubectl apply -k overlay/dev/kustomization.yaml 
+  591  kubectl apply -k overlay/dev/
+  592  #DEV DEPLOYED
+  593  kubectl apply -k base/
+  594  #BASE APPLIED
+  595  kubectl get all
+  596  kubectl get po
+  597  kubectl exec -it dev-myweb-6886b7c78b-5xml2 -- curl localhost:8080
+  598  kubectl exec -it myweb-7d84d75bdd-xdnjv -- curl localhost:8080
+  599  lll
+  600  vim base/kustomization.yaml 
+  601  vim overlay/dev/kustomization.yaml 
+  602  cat base/kustomization.yaml 
+  603  cat overlay/dev/kustomization.yaml 
+  604  cat base/deploymnt.yaml 
+  605  l
+  606  ll
+  607  vim overlay/dev/kustomization.yaml 
+  608  kubectl apply -k overlay/dev/
+  609  kubectl delete -k overlay/dev/
+  610  oc gte all
+  611  kubectl get all
+  612  vim overlay/dev/kustomization.yaml 
+  613  kubectl apply -k overlay/dev/
+  614  kubectl get po
+  615  kubectl exec -it myweb-7d84d75bdd-xdnjv -- curl localhost:8080
+  616  kubectl exec -it dev-myweb-57656fb767-8mxcv -- curl localhost:8080
+  617  ll
+  618  #NOW DEV AND BASE HAS TOW IMAGE AND 2 VERSIONS ARE SHOWN
+  619  #PRODUCTION WILL HAVE 3 REPLICA ALLWAYS
+  620  tree 
+  621  cp base/deploymnt.yaml overlay/prod/replica-count.yaml
+  622  vim overlay/prod/replica-count.yaml 
+  623  #REPLICA COUNT CREATED UNDER PROD
+  624  vim overlay/prod/kustomization.yaml 
+  625  kubectl kustomization overlay/prod/kustomization.yaml 
+  626  kubectl apply -f overlay/prod/
+  627  kubectl get apo
+  628  kubectl get po
+  629  ll
+  630  vim overlay/prod/kustomization.yaml 
+  631  cat overlay/prod/kustomization.yaml 
+  632  ll overlay/prod/
+  633  vim overlay/prod/kustomization.yaml 
+  634  cat base/deploymnt.yaml 
+  635  vim overlay/prod/kustomization.yaml 
+  636  kubectl apply -k overlay/prod/
+  637  oc get po
+  638  ll
+  639  cat overlay/prod/replica-count.yaml 
+  640  cat overlay/prod/kustomization.yaml 
+  641  #NOW 3 replica set to prod
+  642  kubectl get all
+  643  ll
+  644  #Templates
+  645  oc get template -n openshift | grep php
+  646  oc describe cakephp-mysql-example
+  647  oc describe template cakephp-mysql-example
+  648  oc describe template/cakephp-mysql-example -n openshift
+  649  #oc get template -n openshift | grep php -- can see default templates to build multi tier application
+  650  #oc describe template/cakephp-mysql-example -n openshift -- can se details
+  651  oc describe template/cakephp-mysql-example -n openshift
+  652  oc process template/cakephp-mysql-example --parameters
+  653  oc process template/cakephp-mysql-example --parameters -n openshift
+  654  #oc process template/cakephp-mysql-example --parameters -n openshift -- will show all available paramenter
+  655  oc get all
+  656  oc new-app -n openshift template/cakephp-mysql -p DATABSE_USER=cakephp -o yaml
+  657  oc new-app template/cakephp-mysql -p DATABSE_USER=cakephp -n openshift --dry-run=server -o yaml
+  658  oc new-app template/cakephp-mysql -p DATABSE_USER=cakephp -n openshift
+  659  oc new-app template/cakephp-mysql-example -p DATABSE_USER=cakephp -n openshift --dry-run=server -o yaml
+  660  oc new-app template/cakephp-mysql-example -p DATABSE_USER=cakephp -n openshift -o yaml
+  661  oc new-app template/cakephp-mysql-example -p DATABSE_USER=cakephp -n openshift
+  662  oc new-app template/cakephp-mysql-example -p DATABASE_USER=cakephp -n openshift
+  663  oc new-app template/cakephp-mysql-example -p DATABASE_USER=cakep
+  664  oc get is -n openshift | grep php
+  665  ######
+  666  #HELM
+  667  helm -v
+  668  helm -version
+  669  helm   version
+  670  helm version
+  671  #helm version
+  672  helm create -h
+  673  #helm create -h
+  674  ll
+  675  mkdir helm
+  676  cd helm/
+  677  ll
+  678  helm create mychart
+  679  tree 
+  680  #chart dir structrue is created
+  681  ll
+  682  cd mychart/
+  683  ll
+  684  l
+  685  ll
+  686  vim Chart.yaml 
+  687  ll charts/
+  688  #ll charts/ --dependencies are added here
+  689  vim values.yaml 
+  690  #vim values.yaml ---- has service,taint etc. can be add required values
+  691  ll
+  692  cd templates/
+  693  ll
+  694  #template folder has each resource values and it will fetch values from the values.yaml
+  695  cd .
+  696  ll
+  697  cd ..
+  698  ll
+  699  vim values.yaml 
+  700  ll
+  701  cd ..
+  702  ll
+  703  cd ..
+  704  ll
+  705  cat phase1/overlay/prod/kustomization.yaml 
+  706  ll
+  707  cat overlay/prod/replica-count.yaml 
+  708  cat overlay/prod/kustomization.yaml 
+  709  cat phase1/overlay/prod/kustomization.yaml 
+  710  ll
+  711  cat base/deploymnt.yaml 
+  712  ll
+  713  cd helm/mychart/
+  714  ll
+  715  vim Chart.yaml 
+  716  ll
+  717  vim values.yaml 
+  718  helm install -h
+  719  helm install -h  
+  720  helm install -h | less
+  721  ll
+  722  cd ..
+  723  helm install sunchart ./mychart
+  724  helm ls
+  725  #vim values.yaml  -- added image name
+  726  #helm install sunchart ./mychart --- installed
+  727  #helm ls -- chart name listed
+  728  oc get all
+  729  oc get po
+  730  ll
+  731  vim mychart/values.yaml 
+  732  oc get po
+  733  #image name and tag corrected in values file
+  734  helm list
+  735  ll
+  736  helm upgrade sunchart 
+  737  helm upgrade sunchart mychart/
+  738  oc get po
+  739  helm list
+  740  oc get po
+  741  oc describe po sunchart-mychart-5f664cb6c4-824pr 
+  742  oc get po
+  743  oc describe po sunchart-mychart-65f964c874-dn9qk
+  744  ll
+  745  vim mychart/values.yaml 
+  746  #changed port on values
+  747  #helm upgrade sunchart mychart/ --- updated chart
+  748  helm upgrade sunchart mychart/
+  749  oc get po
+  750  helm  list
+  751  #helm  list -- can see the version changed
+  752  ##########
+  753  LAB
+  754  ###LAB
+  755   lab start packaged-charts
+  756  ll
+  757  ll mychart/
+  758  oc whoami 
+  759  helm repo  list
+  760  helm repo list
+  761  helm repo-h
+  762  helm repo -h
+  763  helm repo add do280-repo  http://helm.ocp4.example.com/charts
+  764  helm repo list
+  765   helm search repo --versions
+  766   helm show values do280-repo/etherpad --version 0.0.6
+  767  ll
+  768  vim Values.yaml
+  769  ll
+  770  ll mychart/
+  771  mv Values.yaml values.yaml 
+  772  ll
+  773  oc login -u developer -p developer  https://api.ocp4.example.com:6443
+  774  oc project
+  775  oc new-project packaged-charts-development
+  776  helm install example-app do280-repo/etherpad  -f values.yaml --version 0.0.6
+  777  ll
+  778  oc get routes.route.openshift.io 
+  779  helm list
+  780   helm search repo --versions
+  781  helm upgrade example-app do280-repo/etherpad  -f values.yaml --version 0.0.7
+  782  helm list
+  783  oc get po
+  784  helm list
+  785  oc new-project packaged-charts-production
+  786  helm list
+  787  ll
+  788  vim values.yaml 
+  789   helm install production do280-repo/etherpad  -f values.yaml --version 0.0.7
+  790  helm list
+  791  oc get routes.route.openshift.io 
+  792  vim values.yaml 
+  793  helm upgrade production do280-repo/etherpad  -f alues.yaml
+  794  helm upgrade production do280-repo/etherpad  -f values.yaml
+  795  oc get po
+  796  ll
+  797  helm repo 
+  798  helm repo list
+  799  helm download 
+  800  helm -help | less
+  801  helm -help 
+  802  helm -h
+  803  helm -h | less
+  804  helm pull -h
+  805  helm pull -h | less
+  806  helm repo list
+  807  helm pull do280-repo
+  808  lab finish packaged-charts
+  809  oc project
+  810  #######
+  811  ##NETWORK POLICY###
+  812  LL
+  813  cd ..
+  814  ll
+  815  oc project
+  816  oc whoami 
+  817  oc new-project nwpolicy
+  818  oc project
+  819  oc new-app --name=myapp quay.io/redhattraining/hello-world-nginx:v1.0
+  820  oc get all
+  821  oc describe replicaset.apps/myapp-77ccc86
+  822  #created a newapp
+  823  #this can not be access externaly so use routes
+  824  oc expose svc/myapp 
+  825  oc get routes.route.openshift.io 
+  826  #TERMINATION coulmn is empty since it is non secure
+  827  #different type of routes can be used
+  828  oc create route -h | less
+  829  #Available Commands:
+  830    edge          Create a route that uses edge TLS termination
+  831    passthrough   Create a route that uses passthrough TLS termination
+  832    reencrypt     Create a route that uses reencrypt TLS termination
+  833  history 
+  834  ll
+  835  rm -rf ~/.mozilla/
+  836  oc whoami 
+  837  oc login -u developer -p developer  https://api.ocp4.example.com:6443
+  838  oc whoami --show-conole
+  839  oc whoami --show-console
+  840  oc describe routes.route.openshift.io console -n openshift-console
+  841  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+  842  oc describe routes.route.openshift.io console -n openshift-console
+  843  oc get all -n openshift-ingress
+  844  #pod/router-default-56cf89f99f-gvtlg --- exterbal access hits first here and it is deployed in infra node or worker node
+  845  #oc describe routes.route.openshift.io console -n openshift-console --- console is using reecencrypt
+  846  #pod/router-default-56cf89f99f-gvtlg --- exterbal access hits first here and it is deployed in infra node or worker node and this pod manges certs
+  847  #edge -- user to ocp- secure
+  848  #passthrough --- till router pod arrives and not responds and provide pod end point. 3rd party app prefer this method. 
+  849  #reencrypt --- full secured
+  850  #service mesh can be used to replace network policy and above 3 msecure methods (edge)
+  851  #service mesh can be used to replace network policy and above 3 msecure methods ie TLS termination(edge)
+  852  #passthorug need mounting&secret 3rd party cert
+  853  oc get all
+  854  #deployed app is to expose secure using edge method
+  855  #reencrty need 2 cert to implement
+  856  oc delete routes.route.openshift.io myapp 
+  857  man openssl req 
+  858  #route deleted and will recreate with securely
+  859  #create csr crt key
+  860  man openssl req
+  861  ll
+  862  #openssl req -new -key example.key --days 365 -out example.csr --- crc generation
+  863  openssl req -new -key example.key --days 365 -out example.csr
+  864  openssl req -new -key example.key --days 365 -out exapmple.csr
+  865  sudo openssl req -new -key example.key --days 365 -out exapmple.csr
+  866  openssl req -new -key example.key --days 365 -out example.csr
+  867  ll
+  868  oc project
+  869  oc get svc
+  870  oc get routes
+  871  oc get route
+  872  history 
+  873  #create key
+  874  openssl genrsa --out example.key 4096
+  875  ll
+  876  openssl req -new -key example.key --days 365 -out example.csr
+  877  ll
+  878  #csr generated
+  879  openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.csr 
+  880  ll
+  881  #cert sighn
+  882  #cert sighned (self)
+  883  #
+  884  #common name added as apps.ocp4.example.com and pass changeit
+  885  oc get svc
+  886  oc create route edge --cert=example.crt --key=example.key --port=8080 --service=myapp
+  887  openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.crt
+  888  ll
+  889  rm -rf example.*
+  890  openssl genrsa --out example.key 4096
+  891  openssl req -new -key example.key --days 365 -out example.csr
+  892  ll
+  893  openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.crt
+  894  ll
+  895  oc create route edge --cert=example.crt --key=example.key --port=8080 --service=myapp
+  896  oc get all
+  897  oc get routes.route.openshift.io 
+  898  firefox http://myapp-nwpolicy.apps.ocp4.example.com & 
+  899  firefox https://myapp-nwpolicy.apps.ocp4.example.com & 
+  900  #now the url https://myapp-nwpolicy.apps.ocp4.example.com is accessible
+  901  ll
+  902  history 
+  903  #openssl genrsa --out example.key 4096 --- key generated
+  904  #openssl req -new -key example.key --days 365 -out example.csr ---csr generated
+  905  openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.crt --- signed 
+  906  #openssl x509 -req -days 365 -in example.csr -signkey example.key -out example.crt --- signed 
+  907  #oc create route edge --cert=example.crt --key=example.key --port=8080 --service=myapp --- route created
+  908  #############
+  909  ##OPERATOR
+  910  oc whoami 
+  911  #file integrity operator-- can check changes in master and clusetr admin privleage is nedded to install this
+  912  #install via console
+  913  #oc get sub -A
+  914  oc get sub -A
+  915  #oc get sub -A -- check the operator
+  916  oc get csv -A | grep file --- will show assosoated with all NS since (we can opt during inst)
+  917  #oc get csv -A | grep file --- will show assosoated with all NS since (we can opt during inst)
+  918  oc get packagemanifests.packages.operators.coreos.com 
+  919  oc describe packagemanifests.packages.operators.coreos.com file-integrity-operator
+  920  oc get csv -A | grep file
+  921  oc describe packagemanifests.packages.operators.coreos.com file-integrity-operator
+  922  oc describe packagemanifests.packages.operators.coreos.com file-integrity-operator | less
+  923  #oc get packagemanifests.packages.operators.coreos.com  - can see the operator
+  924  #oc describe packagemanifests.packages.operators.coreos.com file-integrity-operator -- can see all the details
+  925  oc get fileintegrity
+  926  oc get FileIntegrity
+  927  oc get crd | grep FileIntegrity
+  928  #oc get crd | grep FileIntegrity -- ocp will createt he CRD for this operator
+  929  oc describe packagemanifests.packages.operators.coreos.com file-integrity-operator | less
+  930  ##337 page
+  931  history > Day02.txt
+  932  ll
+  933  ls
+  934  lab@utility
+  935  ssh lab@utility
+  936  ll
+  937  cd Day
+  938  cd Day2
+  939  ll
+  940  vim Day02.txt 
+  941  ll
+  942  cd ..
+  943  ll
+  944  ll -tr
+  945  cd -
+  946  vim Day02.txt 
+  947  ll
+  948  ll phase1/
+  949  ll phase1/base/
+  950  cat phase1/base/deploymnt.yaml 
+  951  vim phase1/base/deploymnt.yaml 
+  952  ll
+  953  vim Day02.txt 
+  954  cd phase1/
+  955  ll
+  956  cat base/deploymnt.yaml 
+  957  ll
+  958  cat base/kustomization.yaml 
+  959  vim ../Day02.txt 
+  960  vim overlay/dev/kustomization.yaml 
+  961  vim ../Day02.txt 
+  962  ll
+  963  vim overlay/prod/kustomization.yaml 
+  964  vim ../Day02.txt 
+  965  cd ..
+  966  l
+  967  ll
+  968  cd ..
+  969  ll
+  970  ll Day
+  971  ll Day1
+  972  cd DaY2
+  973  cd Day2
+  974  ll
+  975  ll base/
+  976  cat base/kustomization.yaml 
+  977  ll
+  978  cat overlay/dev/kustomization.yaml 
+  979  cat overlay/prod/kustomization.yaml 
+  980  ll
+  981  cat overlay/prod/replica-count.yaml 
+  982  cat overlay/prod/kustomization.yaml 
+  983  ll
+  984  cd helm/
+  985  ll
+  986  cd mychart/
+  987  ll
+  988  tree 
+  989  cd ..
+  990  tree mychart/
+  991  ll mychart/charts/
+  992  ll
+  993  cd mychart/
+  994  ll
+  995  cat values.yaml 
+  996  ll
+  997  vim Day02.txt 
+  998  ll
+  999  mv backup.yaml com.txt Day1
+ 1000  ll
+ 1001  ll Day1
+ 1002  mv day-01.txt edited.yaml htpasswd oldtemplate.yaml quota.yaml template.yaml Day1
+ 1003  ll
+ 1004  mv Day1 day01
+ 1005  ll
+ 1006  ll day01/
+ 1007  ll
+ 1008  mv Day2/ day02
+ 1009  ll
+ 1010  vim day02/
+ 1011  ll
+ 1012  cd day01
+ 1013  ll
+ 1014  cd ..
+ 1015  ll
+ 1016  cd day02
+ 1017  ll
+ 1018  mv Day02.txt day02.txt 
+ 1019  ll
+ 1020  cd ..
+ 1021  ll
+ 1022  mkdir day03
+ 1023  cd day0
+ 1024  cd day03
+ 1025  ll
+ 1026  #################DAY03
+ 1027  LS
+ 1028  ls
+ 1029  ll
+ 1030  history 
+ 1031  ####
+ 1032  history 
+ 1033  #Protect internal traffic with TLS- page187
+ 1034  pod to pod traffic is unencrypted by default - called zero trust envrinment
+ 1035  #pod to pod traffic is unencrypted by default - called zero trust envrinment
+ 1036  #TO PROTECT CAN USE MUKTIPPLE METHODS
+ 1037  #CAN USE SERVICE CERIFICATES
+ 1038  oc get all
+ 1039  oc whoami 
+ 1040  oc get al -n openshift-service-controler
+ 1041  oc get all -n openshift-service-ca-operator 
+ 1042  #oc get all -n openshift-service-ca-operator --who create cert and key for service
+ 1043  oc get routes.route.openshift.io 
+ 1044  oc project
+ 1045  oc get secrets 
+ 1046  #create a secret with cert and key and should be mentioed in the depolyment to achieve this
+ 1047  #client should trust this cert- to do so create aconfig map called ca-bundle
+ 1048  ##lab 191
+ 1049  lab start network-svccerts
+ 1050  oc login -u admin -p redhatocp  https://api.ocp4.example.com:6443
+ 1051  oc project network-svccerts
+ 1052  oc get all
+ 1053  oc get po
+ 1054  oc get svc
+ 1055  oc get routes.route.openshift.io 
+ 1056  oc get all
+ 1057  oc describe po pod/server-854655dd57-5hw2b
+ 1058  oc describe po/pod/server-854655dd57-5hw2b
+ 1059  oc describe deployment/server 
+ 1060  oc get all
+ 1061  oc describe po/server-854655dd57-5hw2b 
+ 1062  oc logs pods/server-854655dd57-5hw2b server 
+ 1063  oc annotate service server  service.beta.openshift.io/serving-cert-secret-name=server-secret
+ 1064  #The pod was not starting coz of tls issue
+ 1065  oc describe service server 
+ 1066  oc describe secrets server-secret 
+ 1067  #crt and key is automaticly generated by the ocp and 26 month by default expirt
+ 1068  oc describe secret serer-secret
+ 1069  oc describe secret server-secret 
+ 1070  vim ~/DO280/labs/networksccerts/server-secret.yaml
+ 1071  cd ~/DO280/labs/network-svccerts/
+ 1072  ll
+ 1073  vim server-secret.yaml 
+ 1074  LL
+ 1075  ll
+ 1076  cat server-secret.yaml 
+ 1077  OC PATCH DEPLOYMENT SERVER \
+ 1078  oc patch deployment server  --patch-file ~/DO280/labs/network-svccerts/server-secret.yamls
+ 1079  ll
+ 1080  cat lab-start/deployment.yaml 
+ 1081  oc patch deployment server  --patch-file ~/DO280/labs/network-svccerts/server-secret.yaml
+ 1082  oc get po
+ 1083  oc exec no-ca-bundle --  openssl s_client -connect server.network-svccerts.svc:443
+ 1084  oc get po
+ 1085  ll
+ 1086  vim server-secret.yaml 
+ 1087  oc patch deployment server  --patch-file ~/DO280/labs/network-svccerts/server-secret.yaml
+ 1088  oc get po
+ 1089  oc exec no-ca-bundle --  openssl s_client -connect server.network-svccerts.svc:443
+ 1090  oc get po
+ 1091  #oc exec no-ca-bundle --  openssl s_client -connect server.network-svccerts.svc:443 -- as a client checking the cert is valid on 443
+ 1092  #self sigined warnign occred
+ 1093  oc create configmap ca-bundle
+ 1094  #oc create configmap ca-bundle -- created empty configmap
+ 1095   oc annotate configmap ca-bundle  service.beta.openshift.io/inject-cabundle=true
+ 1096  # oc annotate configmap ca-bundle  service.beta.openshift.io/inject-cabundle=true --- from service ca controllee who provides cert injecting the publickey to the client ie no-ca-bundle or any client
+ 1097  oc get configmap ca-bundle -o yaml
+ 1098  ll
+ 1099  vim client.yaml 
+ 1100  oc describe configmaps ca-bundle 
+ 1101  oc describe configmaps ca-bundle | less
+ 1102  vim client.yaml 
+ 1103  oc apply -f ~/DO280/labs/network-svccerts/client.yaml
+ 1104  ll
+ 1105  oc apply -f client.yaml 
+ 1106  vim client.yaml 
+ 1107  oc apply -f client.yaml 
+ 1108  vim client.yaml 
+ 1109  oc exec deploy/client --  curl -s https://server.network-svccerts.svc
+ 1110  oc get po
+ 1111  oc exec client-7bf4d87868-wkppp --  openssl s_client -connect server.network-svccerts.svc:443
+ 1112  #oc exec client-7bf4d87868-wkppp --  openssl s_client -connect server.network-svccerts.svc:443 --- from the client
+ 1113  ll
+ 1114  #use sevice mesh...!!!!
+ 1115  #chapter 5
+ 1116  ##metle lb can be user for bare mettle LB instead of cloud lb, and it is free as operator now for the clas
+ 1117  oc get packagemanifests.packages.operators.coreos.com 
+ 1118  #oc get packagemanifests.packages.operators.coreos.com ---metallb-operator
+ 1119  lab finish network-svccerts
+ 1120  oc get svc
+ 1121  oc whoami \
+ 1122  oc whoami 
+ 1123  oc project
+ 1124  oc projects
+ 1125  oc project lb
+ 1126  oc new-project lb
+ 1127  oc project
+ 1128  oc new-app --name=myapp quay.io/redhattraining/hello-world-nginx:v1.0
+ 1129  oc get all
+ 1130  oc get svc
+ 1131  #EXTERNAL-IP == is empty and lb ip will availble there
+ 1132  oc describe svc myapp 
+ 1133  #can access only from cluser 
+ 1134  oc edit svc/myapp 
+ 1135  #can change to nodeport with certain range
+ 1136  ##can use metallb of LB
+ 1137  oc get crd | grep metal
+ 1138  #can see the available things
+ 1139  oc get ipaddresspools.metallb.io 
+ 1140  oc get ipaddresspools.metallb.io -n metallb-system
+ 1141  #defined 2 IPs now for the assign,ent
+ 1142  #defined 2 IPs now for the assign,and can define our own range
+ 1143  #LAB 216
+ 1144  lab start non-http-lb
+ 1145  oc login -u developer -p developer  https://api.ocp4.example.com:6443
+ 1146  oc login -u developer -p developer  https://api.ocp4.example.com:6443
+ 1147  oc whoami 
+ 1148  oc new-project non-http-lb
+ 1149  cd ~/DO280/labs/non-http-lb
+ 1150  ll
+ 1151  cat virtual-rtsp-1.yaml 
+ 1152  vim virtual-rtsp-1.yaml 
+ 1153  ll
+ 1154  oc apply -f virtual-rtsp-1.yaml
+ 1155  oc get all
+ 1156  watch oc get deployments,pods
+ 1157  oc get routes.route.openshift.io 
+ 1158  oc get svc
+ 1159  oc expose deployment/virtual-rtsp-1  --type=LoadBalancer --target-port=8554
+ 1160  #maped the availble LB as operator here metal, ocp will first check sft lb ie operator and then physical lb
+ 1161  oc get svc
+ 1162   nc -vz 192.168.50.20 8554
+ 1163  ll
+ 1164  vim virtual-rtsp-1.yaml 
+ 1165  oc get svc
+ 1166  oc get po
+ 1167  oc get routes.route.openshift.io 
+ 1168  curl rtsp://192.168.50.20:8554/stream
+ 1169  vim virtual-rtsp-1.yaml 
+ 1170  oc apply -f virtual-rtsp-2.yaml
+ 1171  oc apply -f virtual-rtsp-3.yaml
+ 1172   oc expose deployment/virtual-rtsp-2  --type=LoadBalancer --target-port=8554
+ 1173  oc expose deployment/virtual-rtsp-3  --type=LoadBalancer --target-port=8554
+ 1174   oc get services
+ 1175  lab finish non-http-lb
+ 1176  oc debug node/master01
+ 1177  oc debug node/master01cd 
+ 1178  cd /home/
+ 1179  ll
+ 1180  cd student/
+ 1181  ll
+ 1182  cd day03
+ 1183  oc debug node/master01
+ 1184  oc login -u kubeadmin -p GkLhW-tYZIb-GsgvP-oDQVd https://api.ocp4.example.com:6443
+ 1185  oc debug node/master01
+ 1186  #Multus Secondary Networks
+ 1187  #page 224
+ 1188  #ip can be assigned to pods
+ 1189  #pod has its own private range ip, if we want to add aditional ip for any other use like extranl access we can assign static ip
+ 1190  ##lab 227
+ 1191  lab start non-http-multus
+ 1192  ll
+ 1193  oc login -u developer -p developer  https://api.ocp4.example.com:6443
+ 1194  oc new-project non-http-multus
+ 1195  vim ~/DO280/labs/non-http-multus/deployment.yaml
+ 1196   oc apply -f ~/DO280/labs/non-http-multus/deployment.yaml
+ 1197  oc get all
+ 1198  oc describe po database-79c4689c6b-fcmlf 
+ 1199  oc describe deployment database 
+ 1200  oc get po
+ 1201  oc describe po database-79c4689c6b-fcmlf 
+ 1202  oc login -u admin -p redhatocp  https://api.ocp4.example.com:6443
+ 1203  oc get nodes
+ 1204  oc debug node/master01 -- chroot /host ip addr
+ 1205  ip addr
+ 1206  ip route 
+ 1207   ping 192.168.51.10
+ 1208  ssh utility
+ 1209  vim ~/DO280/labs/non-http-multus/network-attachmentdefinition.yaml
+ 1210  ll
+ 1211  cd ~/DO280/labs/non-http-multus/
+ 1212  ll
+ 1213  vim network-attachment-definition.yaml 
+ 1214  ll
+ 1215  cd .
+ 1216  cd ..
+ 1217  ll
+ 1218  cd /home/student/DO280/solutions/non-http-multus/
+ 1219  ll
+ 1220  pwd
+ 1221  cd -
+ 1222  ll
+ 1223  cd n
+ 1224  cd non-http-multus/
+ 1225  ll
+ 1226  vim network-attachment-definition.yaml 
+ 1227  rm -rf network-attachment-definition.yaml 
+ 1228  ll
+ 1229  cp /home/student/DO280/solutions/non-http-multus/network-attachment-definition.yaml .
+ 1230  l
+ 1231  ll
+ 1232  vim network-attachment-definition.yaml 
+ 1233  ll
+ 1234  oc create  -f ~/DO280/labs/non-http-multus/network-attachment-definition.yaml
+ 1235  vim network-attachment-definition.yaml 
+ 1236  #from where the ip is given to pod is defined in this definition file
+ 1237  oc login -u developer -p developer  https://api.ocp4.example.com:6443
+ 1238  ll
+ 1239  vim deployment.yaml 
+ 1240  oc apply -f deployment.yaml 
+ 1241  oc get all
+ 1242  oc get pod database-74d79685f7-6schp  -o jsonpath='{.metadata.annotations.k8s\.v1\.cni\.cncf\.io/network-status}'
+ 1243  oc get pod database-74d79685f7-6schp  -o yaml
+ 1244  oc describe  pod database-74d79685f7-6schp  -o yaml
+ 1245  oc describe  od database-74d79685f7-6schp -o yaml
+ 1246  oc describe pod database-74d79685f7-6schp -o yaml
+ 1247  oc describe pod database-74d79685f7-6schp
+ 1248  oc get po
+ 1249  oc get pod database-b5fc4f749-44wfz  -o jsonpath='{.metadata.annotations.k8s\.v1\.cni\.cncf\.io/network-status}'
+ 1250  ssh utility
+ 1251  ip route
+ 1252  ssh utility
+ 1253  ip route
+ 1254  lab finish non-http-multus
+ 1255  cd ~/day03
+ 1256  ll
+ 1257  ##cron jobs and jobs
+ 1258  oc get cronjobs.batch 
+ 1259  oc login -u admin -p redhatocp  https://api.ocp4.example.com:6443
+ 1260  oc get cronjobs.batch 
+ 1261  ###lab 358
+ 1262  lab start appsec-scc
+ 1263  ll
+ 1264  oc login -u developer -p developer  https://api.ocp4.example.com:6443
+ 1265  oc new-project appsec-scc
+ 1266  oc new-app --name gitlab  --image registry.ocp4.example.com:8443/redhattraining/gitlab-ce:8.4.3-ce.0
+ 1267  oc get all
+ 1268  oc get po
+ 1269  wacth oc get po
+ 1270  watch oc get po
+ 1271  ll
+ 1272  oc logs pods/gitlab-74558f7bc8-4f4rz 
+ 1273  oc login -u admin -p redhatocp  https://api.ocp4.example.com:6443
+ 1274  oc get deployment
+ 1275  oc get deploy
+ 1276   oc get deploy/gitlab -o yaml | oc adm policy  scc-subject-review -f -
+ 1277  oc create sa gitlab-sa
+ 1278  oc adm policy add-scc-to-user anyuid -z gitlab-sa
+ 1279  oc login -u developer -p developer
+ 1280  oc set serviceaccount deployment/gitlab gitlab-sa
+ 1281  oc get po
+ 1282  oc logs pods/gitlab-84675fd84-dn9cv 
+ 1283  oc login -u admin -p redhatocp  https://api.ocp4.example.com:6443
+ 1284   oc get deploy/gitlab -o yaml | oc adm policy  scc-subject-review -f -
+ 1285  oc expose service/gitlab --port 80  --hostname gitlab.apps.ocp4.example.com
+ 1286  oc get routes.route.openshift.io 
+ 1287  oc login -u developer -p developer
+ 1288  curl -sL http://gitlab.apps.ocp4.example.com/ |  grep '<title>'
+ 1289  oc project
+ 1290  oc delete project appsec-scc
+ 1291  lab stop appsec-scc
+ 1292  lab finish appsec-scc
+ 1293  lab start appsec-prune
+ 1294  oc login -u admin -p redhatocp  https://api.ocp4.example.com:6443
+ 1295  oc new-project appsec-prune
+ 1296   cd ~/DO280/labs/appsec-prune
+ 1297  ll
+ 1298  oc get deployments -n prune-apps -o wide
+ 1299  oc get pods -n prune-apps
+ 1300  oc debug node/master01 --  chroot /host crictl images | egrep '^IMAGE|httpd|nginx'
+ 1301  oc debug node/master01 --  chroot /host crictl rmi --prune
+ 1302  oc whoami 
+ 1303  oc delete deployment nginx-ubi{7,8,9}  -n prune-apps
+ 1304  cd ~/DO280/labs/appsec-prune/configmap-prune.yaml
+ 1305  cd ~/DO280/labs/appsec-prune/
+ 1306  ll
+ 1307  vim cronjob-prune.yaml 
+ 1308  vim configmap-prune.yaml 
+ 1309  cp ~/DO280/solutions/appsec-prune/configmap-prune.yaml .
+ 1310  ll
+ 1311  date
+ 1312  vim configmap-prune.yaml 
+ 1313  oc apply -f configmap-prune.yaml 
+ 1314  oc get cf
+ 1315  oc get cm
+ 1316  cp ~/DO280/solutions/appsec-prune/cronjob-prune.yaml .
+ 1317  ll
+ 1318  vim cronjob-prune.yaml 
+ 1319  oc apply -f cronjob-prune.yaml 
+ 1320  oc get all
+ 1321  oc get po
+ 1322  oc get all
+ 1323  oc describe po image-pruner-28807896-6c6x4 
+ 1324  oc get all
+ 1325  oc logs pods/image-pruner-28807896-6c6x4 
+ 1326  oc get all
+ 1327  oc delete cronjobs.batch image-pruner 
+ 1328  oc get all
+ 1329  oc create sa image-pruner
+ 1330  oc adm policy add-scc-to-user privileged  -z image-pruner
+ 1331  oc adm policy add-cluster-role-to-user  cluster-admin -z image-pruner
+ 1332  ll
+ 1333  vim cronjob-prune.yaml 
+ 1334  cat ~/DO280/solutions/appsec-prune/cronjob-prune.yaml 
+ 1335  ll
+ 1336  cat cronjob-prune.yaml | grep servi
+ 1337  vim cronjob-prune.yaml 
+ 1338  ll
+ 1339  lab finish appsec-pru
+ 1340  lab finish appsec-prue
+ 1341  lab finish appsec-prune 
+ 1342  #OPENSHIFT CLUSTER UPDATE 
+ 1343  oc api-versions 
+ 1344  oc api-resources 
+ 1345  #oc api-resources 
+ 1346  #oc api-versions 
+ 1347  #above 2 commands show all the info of resources and versuibs
+ 1348  oc adm mirror
+ 1349  oc adm miror
+ 1350  oc adm release mirror 
+ 1351  #oc adm release mirror  -- can see the mirrrs
+ 1352  ll
+ 1353  cd /home/
+ 1354  ll
+ 1355  cd student/
+ 1356  ll
+ 1357  cd day03
+ 1358  history >day03.txt

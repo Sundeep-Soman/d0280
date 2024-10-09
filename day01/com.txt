@@ -1,0 +1,7 @@
+ 232  oc get clusterrolebinding -A | grep cluster-admin
+  233  oc describe cluster-admin-1
+  234  oc describe clusterrolebindings cluster-admin-1
+  235  #oc get clusterrolebinding -A | grep cluster-admin
+  236  oc get clusterrolebinding -A | grep geojit
+  237  oc describe clusterrolebinding -A | grep geojit
+
