@@ -1,0 +1,43 @@
+    1  exit
+    2  w
+    3  aws
+    4  cat /etc/os-release 
+    5  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    6  unzip awscliv2.zip
+    7  sudo ./aws/install
+    8  aws 
+    9  aws --version
+   10  aws configure
+   11  cat .aws/credentials 
+   12  aws -h
+   13  aws help
+   14  aws cofigure get region
+   15  #adding auto complete
+   16  ls /usr/local/bin
+   17  complete -C '/usr/local/bin/aws_completer' aws
+   18  aws configure get region
+   19  #region set 
+   20  aws sts get-caller-identity 
+   21  #accout details
+   22  wget https://raw.githubusercontent.com/RedHatTraining/CS22X-apps/main/aws/
+   23  ll
+   24  m
+   25  https://raw.githubusercontent.com/RedHatTraining/CS22X-apps/main/aws/
+   26  cloudformation/privatelink-with-network-firewall.yaml
+   27  wget https://raw.githubusercontent.com/RedHatTraining/CS22X-apps/main/aws/cloudformation/privatelink-with-network-firewall.yaml
+   28  vim privatelink-with-network-firewall.yaml 
+   29  #plan the cluster name
+   30  #aws cloudformation create-stack -- creating multiple aws resources using a template
+   31  aws cloudformation create-stack --stack-name ROSA-infra-geojit --template-body file://./privatelink-with-network-firewall.yaml --parameters ParameterKey=RosaClusterName,ParameterValue=cs220geojit
+   32  aws cloudformation list-stacks
+   33  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text
+   34  #aws cloudformation create-stack --stack-name ROSA-infra-geojit --template-body file://./privatelink-with-network-firewall.yaml --parameters ParameterKey=RosaClusterName,ParameterValue=cs220geojit --- created the cluster with name "geojit", located network file, and cs220geojit will show on redhat cluster
+   35  history 
+   36  #aws cloudformation list-stacks -- will show stack
+   37  #aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text -- detailed output
+   38  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text
+   39  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query 
+   40  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStatus
+   41  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStatus"
+   42  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text
+   43  history > day04

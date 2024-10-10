@@ -1,0 +1,47 @@
+aws s3api create-bucket \
+	--bucket cs220geojit-oidc-a3q9 \
+	--create-bucket-configuration LocationConstraint=ap-southeast-2 \
+	--region ap-southeast-2
+
+aws s3api put-bucket-tagging \
+	--bucket cs220geojit-oidc-a3q9 \
+	--tagging 'TagSet=[{Key=red-hat-managed,Value=true}]'
+
+aws s3api put-public-access-block \
+	--bucket cs220geojit-oidc-a3q9 \
+	--public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=false,RestrictPublicBuckets=false
+
+aws s3api put-bucket-policy \
+	--bucket cs220geojit-oidc-a3q9 \
+	--policy file://readOnlyPolicy-cs220geojit-oidc-a3q9.json
+
+rm readOnlyPolicy-cs220geojit-oidc-a3q9.json
+
+aws s3api put-object \
+	--body ./discovery-document-cs220geojit-oidc-a3q9.json \
+	--bucket cs220geojit-oidc-a3q9 \
+	--key .well-known/openid-configuration \
+	--tagging 'red-hat-managed=true'
+
+rm discovery-document-cs220geojit-oidc-a3q9.json
+
+aws s3api put-object \
+	--body ./jwks-cs220geojit-oidc-a3q9.json \
+	--bucket cs220geojit-oidc-a3q9 \
+	--key keys.json \
+	--tagging 'red-hat-managed=true'
+
+rm jwks-cs220geojit-oidc-a3q9.json
+
+aws secretsmanager create-secret \
+	--description "Secret for cs220geojit-oidc-a3q9" \
+	--name rosa-private-key-cs220geojit-oidc-a3q9 \
+	--region ap-southeast-2 \
+	--secret-string file://rosa-private-key-cs220geojit-oidc-a3q9.key \
+	--tags Key=red-hat-managed,Value=true
+
+rm rosa-private-key-cs220geojit-oidc-a3q9.key
+I: Please run commands above to generate OIDC compliant configuration in your AWS account. To register this OIDC Configuration, please run the following command:
+rosa register oidc-config
+For more information please refer to the documentation
+E: Unable to attempt creation of OIDC provider; oidc config ID not found / not created successfully: %!s(<nil>)

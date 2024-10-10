@@ -1,0 +1,286 @@
+    1  exit
+    2  aws
+    3  history 
+    4  aws
+    5  complete -C '/usr/local/bin/aws_completer' aws
+    6  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output tet
+    7  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text
+    8  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStaawtsu sc"loudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStatus"
+    9  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStatus"
+   10  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output yaml
+   11  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStaawtsu sc"loudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StackStatus"
+   12  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StackStatus"
+   13  #aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StackStatus" --- check the status
+   14  #########
+   15  #cluster created with the help of yaml file
+   16  ll
+   17  mv day04 day04-1
+   18  ll
+   19  ll Downloads/
+   20  cp Downloads/rosa /usr/local/bin/
+   21  sudo cp Downloads/rosa /usr/local/bin/
+   22  rosa
+   23  #ROSA binary installed 
+   24  #need a tocken to login to rosa cluster, it can be regenrated
+   25  #Navigate to Services > Management & Governance > Resource Groups & Tag
+   26  #
+   27  #go to https://console.redhat.com/tocken to genrate a tocken
+   28  #go to https://console.redhat.com/tocken/rosa to genrate a tocken
+   29  rosa login --token="eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0NzQzYTkzMC03YmJiLTRkZGQtOTgzMS00ODcxNGRlZDc0YjUifQ.eyJpYXQiOjE3Mjg1NDU1NDgsImp0aSI6Ijg3OGMzYWNiLTY2OTEtNGE4OC1iODY5LTFiNDM5MjZkNzc5ZCIsImlzcyI6Imh0dHBzOi8vc3NvLnJlZGhhdC5jb20vYXV0aC9yZWFsbXMvcmVkaGF0LWV4dGVybmFsIiwiYXVkIjoiaHR0cHM6Ly9zc28ucmVkaGF0LmNvbS9hdXRoL3JlYWxtcy9yZWRoYXQtZXh0ZXJuYWwiLCJzdWIiOiJmOjUyOGQ3NmZmLWY3MDgtNDNlZC04Y2Q1LWZlMTZmNGZlMGNlNjpzdW5kZWVwX3NvbSIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJjbG91ZC1zZXJ2aWNlcyIsIm5vbmNlIjoiYTQzNWJhOGUtMjlhZC00Yjc0LWJkMzEtMDNmODQwNjZjZGM1Iiwic2lkIjoiYTcxYzVhZTMtYThjNC00N2Q4LTgwMGQtNzViYTdhMjYxMzhkIiwic2NvcGUiOiJvcGVuaWQgYmFzaWMgYXBpLmlhbS5zZXJ2aWNlX2FjY291bnRzIHJvbGVzIHdlYi1vcmlnaW5zIGNsaWVudF90eXBlLnByZV9rYzI1IG9mZmxpbmVfYWNjZXNzIn0.ZahLN0u7e4HuJx5rfAhgd34i1S2tNQcY9GS4VShYmKOCb9hmtxHinTuUmdr5kfHk2Fwi5HPoBuDaP4NoDQzu9Q"
+   30  rosa whoami
+   31  ####go to https://console.redhat.com/token/rosa to genrate a tocken
+   32  ###rosa login --token="eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0NzQzYTkzMC03YmJiLTRkZGQtOTgzMS00ODcxNGRlZDc0YjUifQ.eyJpYXQiOjE3Mjg1NDU1NDgsImp0aSI6Ijg3OGMzYWNiLTY2OTEtNGE4OC1iODY5LTFiNDM5MjZkNzc5ZCIsImlzcyI6Imh0dHBzOi8vc3NvLnJlZGhhdC5jb20vYXV0aC9yZWFsbXMvcmVkaGF0LWV4dGVybmFsIiwiYXVkIjoiaHR0cHM6Ly9zc28ucmVkaGF0LmNvbS9hdXRoL3JlYWxtcy9yZWRoYXQtZXh0ZXJuYWwiLCJzdWIiOiJmOjUyOGQ3NmZmLWY3MDgtNDNlZC04Y2Q1LWZlMTZmNGZlMGNlNjpzdW5kZWVwX3NvbSIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJjbG91ZC1zZXJ2aWNlcyIsIm5vbmNlIjoiYTQzNWJhOGUtMjlhZC00Yjc0LWJkMzEtMDNmODQwNjZjZGM1Iiwic2lkIjoiYTcxYzVhZTMtYThjNC00N2Q4LTgwMGQtNzViYTdhMjYxMzhkIiwic2NvcGUiOiJvcGVuaWQgYmFzaWMgYXBpLmlhbS5zZXJ2aWNlX2FjY291bnRzIHJvbGVzIHdlYi1vcmlnaW5zIGNsaWVudF90eXBlLnByZV9rYzI1IG9mZmxpbmVfYWNjZXNzIn0.ZahLN0u7e4HuJx5rfAhgd34i1S2tNQcY9GS4VShYmKOCb9hmtxHinTuUmdr5kfHk2Fwi5HPoBuDaP4NoDQzu9Q"   -- logined using token
+   33  #rosa whoami --- whoami
+   34  rosa whoami
+   35  history ? day04-2
+   36  history > day04-2
+   37* rosa completion bash > rosa_completion
+   38  cp rosa_completion /etc/bash_completion.d/
+   39  source rosa_completion 
+   40  rosa list 
+   41  #rosa auto completion added
+   42  ll
+   43  ll aws
+   44  ll
+   45  mkdir rosa-iam-policies
+   46  cd rosa-iam-policies/
+   47  ll
+   48  rosa create account-roles -h
+   49  rosa create account-roles -h | less
+   50  #rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+   51  which oc
+   52  oc version 
+   53  #can communicate with 4.12 above cluster
+   54  #rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit--- create policies
+   55  rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+   56  ll
+   57  #some files create in the directory
+   58  ll
+   59  #these policies are to be added in AWS IAM
+   60  #no need to updload this to aws as json, if mode was auto this will done in auto
+   61  #the above commands are to be run one by one
+   62  ll
+   63  git clone https://github.com/sanjurh/geojit/blob/main/commands.txt
+   64  git clone https://github.com/sanjurajrh/geojit/blob/main/commands.txt
+   65  wget clone https://github.com/sanjurajrh/geojit/blob/main/commands.txt
+   66  ll
+   67  vim commands.txt 
+   68  rm -rf commands.txt 
+   69  wget https://github.com/sanjurajrh/geojit/blob/main/commands.txt
+   70  ll
+   71  vim commands.txt 
+   72  >commands.txt 
+   73  vim commands.txt 
+   74  ll
+   75  #sed -i 's/<search regex>/<replacement>/g' <input file>
+   76  vim commands.txt 
+   77  #sed -i 's/cs220lws/cs220geojit/g' commands.txt 
+   78  vim commands.txt 
+   79  cat commands.txt | grep -i geojit
+   80  sed -i 's/cs220lws/cs220geojit/g' commands.txt 
+   81  cat commands.txt | grep -i geojit
+   82  vim commands.txt 
+   83  head commands.txt 
+   84  osa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+   85  rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+   86  rosa list account-roles
+   87  ll
+   88  date
+   89  vim commands.txt 
+   90  history 
+   91  head commands.txt 
+   92  >commands.txt 
+   93  vim commands.txt 
+   94  sed -i 's/cs220lws/cs220geojit/g' commands.txt 
+   95  head commands.txt 
+   96  aws iam create-role --assume-role-policy-document file://sts_installer_trust_policy.json --role-name cs220geojit-Installer-Role --tags Key=red-hat-managed,Value=true Key=rosa_role_type,Value=installer  Key=rosa_role_prefix,Value=cs220geojit Key=rosa_openshift_version,Value=4.15
+   97  rosa list account-roles 
+   98  #first one applied
+   99  aws iam create-policy --policy-document file://sts_installer_permission_policy.json --policy-name cs220geojit-Installer-Role-Policy --tags Key=red-hat-managed,Value=true Key=rosa_role_type,Value=installer Key=rosa_role_prefix,Value=cs220geojit Key=rosa_openshift_version,Value=4.15
+  100  rosa list account-roles 
+  101  rosa list -h
+  102  #first policy applied
+  103  rosa delete account-roles -p css220geojit
+  104  rosa list account-roles 
+  105  rosa whoami 
+  106  rosa list account-roles 
+  107  rosa delete account-roles -p cs220geojit
+  108  rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+  109  >comm
+  110  ll
+  111  >commands.txt 
+  112  vim commands.txt 
+  113  rm -rf comm
+  114  ll
+  115  cat commands.txt 
+  116  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-Installer-Role-Policy --role-name cs220geojit-Installer-Role
+  117  aws iam create-role --assume-role-policy-document file://sts_instance_controlplane_trust_policy.json --role-name cs220geojit-ControlPlane-Role --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit Key=rosa_role_type,Value=instance_controlplane
+  118  aws iam create-policy --policy-document file://sts_instance_controlplane_permission_policy.json --policy-name cs220geojit-ControlPlane-Role-Policy --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit Key=rosa_role_type,Value=instance_controlplane
+  119  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-ControlPlane-Role-Policy --role-name cs220geojit-ControlPlane-Role
+  120  aws iam create-role --assume-role-policy-document file://sts_instance_worker_trust_policy.json --role-name cs220geojit-Worker-Role --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit Key=rosa_role_type,Value=instance_worker
+  121  aws iam create-policy --policy-document file://sts_instance_worker_permission_policy.json --policy-name cs220geojit-Worker-Role-Policy --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit Key=rosa_role_type,Value=instance_worker
+  122  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-Worker-Role-Policy --role-name cs220geojit-Worker-Role
+  123  aws iam create-role --assume-role-policy-document file://sts_support_trust_policy.json --role-name cs220geojit-Support-Role --tags Key=red-hat-managed,Value=true Key=rosa_role_type,Value=support Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit
+  124  aws iam create-policy --policy-document file://sts_support_permission_policy.json --policy-name cs220geojit-Support-Role-Policy --tags Key=red-hat-managed,Value=true Key=rosa_role_type,Value=support Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit
+  125  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-Support-Role-Policy --role-name cs220geojit-Support-Role
+  126  rosa list account-roles 
+  127  #rosa list account-roles  -- will list 4 roles
+  128  #rosa create oidc-config --mode manual --managed=false --prefix cs220geojit
+  129  #our user should have permission to create cluster,we need to add it using oidc
+  130  rosa whoami 
+  131  rosa create oidc-config --mode manual --managed=false --prefix cs220geojit
+  132  ll
+  133  cd ..
+  134  ll
+  135  mkdir oidc
+  136  cd oidc/
+  137  rosa create oidc-config --mode manual --managed=false --prefix cs220geojit
+  138  ll
+  139  ll ../rosa-iam-policies/
+  140  ll
+  141  ll ../rosa-iam-policies/
+  142  ll
+  143  #ignore error and some json files are created
+  144  ll
+  145  vim command.txt
+  146  aws s3api create-bucket --bucket cs220geojit-oidc-a3q9 --create-bucket-configuration LocationConstraint=ap-southeast-2 --region ap-southeast-2
+  147  aws s3api put-bucket-tagging --bucket cs220geojit-oidc-a3q9 --tagging 'TagSet=[{Key=red-hat-managed,Value=true}]'
+  148  aws s3api put-public-access-block --bucket cs220geojit-oidc-a3q9 --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=false,RestrictPublicBuckets=false
+  149  aws s3api put-bucket-policy --bucket cs220geojit-oidc-a3q9 --policy file://readOnlyPolicy-cs220geojit-oidc-a3q9.json
+  150  rm readOnlyPolicy-cs220geojit-oidc-a3q9.json
+  151  aws s3api put-object --body ./discovery-document-cs220geojit-oidc-a3q9.json --bucket cs220geojit-oidc-a3q9 --key .well-known/openid-configuration --tagging 'red-hat-managed=true'
+  152  rm discovery-document-cs220geojit-oidc-a3q9.json
+  153  aws s3api put-object --body ./jwks-cs220geojit-oidc-a3q9.json --bucket cs220geojit-oidc-a3q9 --key keys.json --tagging 'red-hat-managed=true'
+  154  rm jwks-cs220geojit-oidc-a3q9.json
+  155  aws secretsmanager create-secret --description "Secret for cs220geojit-oidc-a3q9" --name rosa-private-key-cs220geojit-oidc-a3q9 --region ap-southeast-2 --secret-string file://rosa-private-key-cs220geojit-oidc-a3q9.key --tags Key=red-hat-managed,Value=true
+  156  rm rosa-private-key-cs220geojit-oidc-a3q9.key
+  157  URL_BUCKET="https://cs220geojit-oidc-a3q9.s3.ap-southeast-2.amazonaws.com"
+  158  echo $URL_BUCKET
+  159  #set this bucket name for further use
+  160  ARN_SECRET="arn:aws:secretsmanager:ap-southeast-2:972651385053:secret:rosa-private-key-cs220geojit-oidc-a3q9-i65T9s"
+  161  #set the arn secret for further use
+  162  echo $ARN_SECRET
+  163  aws s3 list
+  164  aws s3 ls
+  165  ll
+  166  cd ..
+  167  l
+  168  ll
+  169  rosa list account-roles 
+  170  rosa list account-roles ARN_INSTALLER="arn:aws:iam::972651385053:role/cs220geojit-Installer-Role"
+  171  ARN_INSTALLER="arn:aws:iam::972651385053:role/cs220geojit-Installer-Role"
+  172  echo ARN_INSTALLER
+  173  echo $ARN_INSTALLER
+  174  #set arn installer for further use
+  175  #set arn installer for further use- will get installer arn from "rosa list account-roles"
+  176  ll
+  177  rosa register oidc-config --mode manual --issuer-url $URL_BUCKET --secret-arn $ARN_SECRET --installer-role-arn #ARN_INSTALLER
+  178  rosa register oidc-config --mode manual --issuer-url $URL_BUCKET  --secret-arn $ARN_SECRET --installer-role-arn $ARN_INSTALLER
+  179  #error ocuerd, set id from command rosa list oidc-config
+  180  rosa list oidc-config 
+  181  OIDC_CONFIG_ID="2ealknv852i5vudq7afona3hjbsrjm3h"
+  182  #ser privileage 
+  183  #set privileage 
+  184  mkdir rosa-operator-roles
+  185  cd rosa-operator-roles/
+  186  ll
+  187  rosa create operator-roles -h | less
+  188  echo $ARN_INSTALLER 
+  189  echo $URL_BUCKET 
+  190  echo $OIDC_CONFIG_ID 
+  191  rosa create operator-roles --mode manual --prefix cs220geojit  --oidc-config-id $OIDC_CONFIG_ID --installer-role-arn $ARN_INSTALLER
+  192  vim command.txt
+  193  vim command.txt 
+  194  pwd
+  195  aws iam create-role --assume-role-policy-document file://operator_cloud_network_config_controller_cloud_credentials_policy.json --role-name cs220geojit-openshift-cloud-network-config-controller-cloud-cred --tags Key=red-hat-managed,Value=true Key=operator_name,Value=cloud-credentials Key=operator_namespace,Value=openshift-cloud-network-config-controller
+  196  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-cloud-network-config-controller-cloud-cred --role-name cs220geojit-openshift-cloud-network-config-controller-cloud-cred
+  197  aws iam create-policy --policy-document file://openshift_machine_api_aws_cloud_credentials_policy.json --policy-name cs220geojit-openshift-machine-api-aws-cloud-credentials --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=aws-cloud-credentials Key=operator_namespace,Value=openshift-machine-api
+  198  aws iam create-role --assume-role-policy-document file://operator_machine_api_aws_cloud_credentials_policy.json --role-name cs220geojit-openshift-machine-api-aws-cloud-credentials --tags Key=red-hat-managed,Value=true Key=operator_name,Value=aws-cloud-credentials Key=operator_namespace,Value=openshift-machine-api
+  199  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-machine-api-aws-cloud-credentials --role-name cs220geojit-openshift-machine-api-aws-cloud-credentials
+  200  aws iam create-policy --policy-document file://openshift_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json --policy-name cs220geojit-openshift-cloud-credential-operator-cloud-credential --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=cloud-credential-operator-iam-ro-creds Key=operator_namespace,Value=openshift-cloud-credential-operator
+  201  aws iam create-role --assume-role-policy-document file://operator_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json --role-name cs220geojit-openshift-cloud-credential-operator-cloud-credential --tags Key=red-hat-managed,Value=true Key=operator_name,Value=cloud-credential-operator-iam-ro-creds Key=operator_namespace,Value=openshift-cloud-credential-operator
+  202  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-cloud-credential-operator-cloud-credential --role-name cs220geojit-openshift-cloud-credential-operator-cloud-credential
+  203  aws iam create-policy --policy-document file://openshift_image_registry_installer_cloud_credentials_policy.json --policy-name cs220geojit-openshift-image-registry-installer-cloud-credentials --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=installer-cloud-credentials Key=operator_namespace,Value=openshift-image-registry
+  204  aws iam create-role --assume-role-policy-document file://operator_image_registry_installer_cloud_credentials_policy.json --role-name cs220geojit-openshift-image-registry-installer-cloud-credentials --tags Key=red-hat-managed,Value=true Key=operator_name,Value=installer-cloud-credentials Key=operator_namespace,Value=openshift-image-registry
+  205  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-image-registry-installer-cloud-credentials --role-name cs220geojit-openshift-image-registry-installer-cloud-credentials
+  206  aws iam create-policy --policy-document file://openshift_ingress_operator_cloud_credentials_policy.json --policy-name cs220geojit-openshift-ingress-operator-cloud-credentials --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=cloud-credentials Key=operator_namespace,Value=openshift-ingress-operator
+  207  aws iam create-role --assume-role-policy-document file://operator_ingress_operator_cloud_credentials_policy.json --role-name cs220geojit-openshift-ingress-operator-cloud-credentials --tags Key=red-hat-managed,Value=true Key=operator_name,Value=cloud-credentials Key=operator_namespace,Value=openshift-ingress-operator
+  208  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-ingress-operator-cloud-credentials --role-name cs220geojit-openshift-ingress-operator-cloud-credentials
+  209  aws iam create-policy --policy-document file://openshift_cluster_csi_drivers_ebs_cloud_credentials_policy.json --policy-name cs220geojit-openshift-cluster-csi-drivers-ebs-cloud-credentials --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=ebs-cloud-credentials Key=operator_namespace,Value=openshift-cluster-csi-drivers
+  210  aws iam create-role --assume-role-policy-document file://operator_cluster_csi_drivers_ebs_cloud_credentials_policy.json --role-name cs220geojit-openshift-cluster-csi-drivers-ebs-cloud-credentials --tags Key=red-hat-managed,Value=true Key=operator_name,Value=ebs-cloud-credentials Key=operator_namespace,Value=openshift-cluster-csi-drivers
+  211  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-cluster-csi-drivers-ebs-cloud-credentials --role-name cs220geojit-openshift-cluster-csi-drivers-ebs-cloud-credentials
+  212  rosa list operator-roles 
+  213  rosa list operator-roles --prefix cs220geojit
+  214  #rosa list operator-roles --prefix cs220geojit --- will show 
+  215  echo $SUFFIX
+  216  SUBNET=$(aws ec2 describe-subnets  --filters "Name=tag:Name,Values=cs220$SUFFIX-private-subnet"  --output text --query "Subnets[0].SubnetId")
+  217  echo $SUBNET 
+  218  unset SUBNET 
+  219  echo $SUBNET 
+  220  printenv | grep SUBNET
+  221  SUBNET=$(aws ec2 describe-subnets  --filters "Name=tag:Name,Values=cs220geojit-private-subnet"  --output text --query "Subnets[0].SubnetId")
+  222  echo $SUBNET 
+  223  CIDR=$(aws ec2 describe-vpcs --filters "Name=tag:Name,Values=cs220geojit-private-vpc" --output text --query "Vpcs[0].CidrBlock")
+  224  echo $CIDR 
+  225  rosa list oidc-config 
+  226  ##page no 54
+  227  echo $OIDC_CONFIG_ID 
+  228  rosa list account-roles 
+  229  #oidc is using for install with operator
+  230  #oidc is using for install cluster with operator
+  231  rosa list versions 
+  232  rosa list versions | less
+  233  SUFFIX=geojit
+  234  echo $SUFFIX 
+  235  rosa create cluster --sts --private-link --cluster-name cs220$SUFFIX  --operator-roles-prefix cs220$SUFFIX --version 4.14.21  --oidc-config-id $OIDC_CONFIG_ID --subnet-ids $SUBNET --machine-cidr $CIDR  --role-arn $ARN_INSTALLER --support-role-arn $ARN_SUPPORT  --controlplane-iam-role $ARN_CONTROL --worker-iam-role $ARN_COMPUTE  --tags "redhattraining:rosa-cluster-id cs220$SUFFIX, \
+ redhattraining:course-sku CS220" --dry-run
+  236  rosa list versions | grep -i yes
+  237  #rosa list versions | grep -i yes --- select only "yes" version
+  238  echo $OIDC_CONFIG_ID
+  239  echo $SUBNET
+  240  eho $CIDR 
+  241  eho $CIDR
+  242  echo $CIDR
+  243  echo $ARN_INSTALLER 
+  244  echo $ARN_SUPPORT
+  245  rosa list oidc-config 
+  246  rosa list account-roles 
+  247  #set variable from rosa list account-roles
+  248  echo $ARN_INSTALLER
+  249  ARN_SUPPORT="arn:aws:iam::972651385053:role/cs220geojit-Support-Role"
+  250  echo $ARN_SUPPORT 
+  251  echo $ARN_CONTROL
+  252  ARN_CONTROL="arn:aws:iam::972651385053:role/cs220geojit-ControlPlane-Role"
+  253  echo $ARN_COMPUTE
+  254  ARN_COMPUTE="arn:aws:iam::972651385053:role/cs220geojit-Worker-Role"
+  255  echo $ARN_COMPUTE
+  256  rosa create cluster --sts --private-link --cluster-name cs220$SUFFIX  --operator-roles-prefix cs220$SUFFIX --version 4.15.35 --oidc-config-id $OIDC_CONFIG_ID --subnet-ids $SUBNET --machine-cidr $CIDR  --role-arn $ARN_INSTALLER --support-role-arn $ARN_SUPPORT  --controlplane-iam-role $ARN_CONTROL --worker-iam-role $ARN_COMPUTE  --tags "redhattraining:rosa-cluster-id cs220$SUFFIX, \
+ redhattraining:course-sku CS220" --dry-run
+  257  rosa list clusters 
+  258  #dry run is fine, now run without dryrun
+  259  rosa create cluster --sts --private-link --cluster-name cs220$SUFFIX  --operator-roles-prefix cs220$SUFFIX --version 4.15.35 --oidc-config-id $OIDC_CONFIG_ID --subnet-ids $SUBNET --machine-cidr $CIDR  --role-arn $ARN_INSTALLER --support-role-arn $ARN_SUPPORT  --controlplane-iam-role $ARN_CONTROL --worker-iam-role $ARN_COMPUTE  --tags "redhattraining:rosa-cluster-id cs220$SUFFIX, \
+ redhattraining:course-sku CS220"
+  260  rosa list clusters 
+  261  #rosa list clusters  -- can see creatd clusters
+  262  rosa describe cluster -c cs220geojit
+  263  rosa logs install -c cs220geojit --watch
+  264  rosa describe cluster -c cs220geojit
+  265  #installation is on hold because oidc provides is not found
+  266  rosa list oidc-providers 
+  267  #rosa list oidc-providers -- cheking for any provider
+  268  rosa create oidc-provider --cluster cs220geojit
+  269  #rosa create oidc-provider --cluster cs220geojit --created with auto mode
+  270  rosa describe cluster -c cs220geojit
+  271  rosa describe cluster -c cs220geojit watch
+  272  rosa describe cluster -c cs220geojit
+  273  rosa logs install -c cs220geojit --watch
+  274  rosa describe cluster -c cs220geojit
+  275  rosa describe cluster -c cs220geojit | grep state
+  276  rosa describe cluster -c cs220geojit | grep State
+  277  ##rosa describe cluster -c cs220geojit | grep State  -- installing state
+  278  #will take 45 min to up
+  279  rosa describe cluster -c cs220geojit
+  280  #cluster is up now
+  281  cd ..
+  282  ll
+  283  history >day04-2
