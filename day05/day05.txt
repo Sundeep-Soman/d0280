@@ -1,0 +1,708 @@
+    1  exit
+    2  aws
+    3  history 
+    4  aws
+    5  complete -C '/usr/local/bin/aws_completer' aws
+    6  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output tet
+    7  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text
+    8  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStaawtsu sc"loudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStatus"
+    9  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStatus"
+   10  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output yaml
+   11  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStaawtsu sc"loudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StackStatus"
+   12  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StackStatus"
+   13  #aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StackStatus" --- check the status
+   14  #########
+   15  #cluster created with the help of yaml file
+   16  ll
+   17  mv day04 day04-1
+   18  ll
+   19  ll Downloads/
+   20  cp Downloads/rosa /usr/local/bin/
+   21  sudo cp Downloads/rosa /usr/local/bin/
+   22  rosa
+   23  #ROSA binary installed 
+   24  #need a tocken to login to rosa cluster, it can be regenrated
+   25  #Navigate to Services > Management & Governance > Resource Groups & Tag
+   26  #
+   27  #go to https://console.redhat.com/tocken to genrate a tocken
+   28  #go to https://console.redhat.com/tocken/rosa to genrate a tocken
+   29  rosa login --token="eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0NzQzYTkzMC03YmJiLTRkZGQtOTgzMS00ODcxNGRlZDc0YjUifQ.eyJpYXQiOjE3Mjg1NDU1NDgsImp0aSI6Ijg3OGMzYWNiLTY2OTEtNGE4OC1iODY5LTFiNDM5MjZkNzc5ZCIsImlzcyI6Imh0dHBzOi8vc3NvLnJlZGhhdC5jb20vYXV0aC9yZWFsbXMvcmVkaGF0LWV4dGVybmFsIiwiYXVkIjoiaHR0cHM6Ly9zc28ucmVkaGF0LmNvbS9hdXRoL3JlYWxtcy9yZWRoYXQtZXh0ZXJuYWwiLCJzdWIiOiJmOjUyOGQ3NmZmLWY3MDgtNDNlZC04Y2Q1LWZlMTZmNGZlMGNlNjpzdW5kZWVwX3NvbSIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJjbG91ZC1zZXJ2aWNlcyIsIm5vbmNlIjoiYTQzNWJhOGUtMjlhZC00Yjc0LWJkMzEtMDNmODQwNjZjZGM1Iiwic2lkIjoiYTcxYzVhZTMtYThjNC00N2Q4LTgwMGQtNzViYTdhMjYxMzhkIiwic2NvcGUiOiJvcGVuaWQgYmFzaWMgYXBpLmlhbS5zZXJ2aWNlX2FjY291bnRzIHJvbGVzIHdlYi1vcmlnaW5zIGNsaWVudF90eXBlLnByZV9rYzI1IG9mZmxpbmVfYWNjZXNzIn0.ZahLN0u7e4HuJx5rfAhgd34i1S2tNQcY9GS4VShYmKOCb9hmtxHinTuUmdr5kfHk2Fwi5HPoBuDaP4NoDQzu9Q"
+   30  rosa whoami
+   31  ####go to https://console.redhat.com/token/rosa to genrate a tocken
+   32  ###rosa login --token="eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0NzQzYTkzMC03YmJiLTRkZGQtOTgzMS00ODcxNGRlZDc0YjUifQ.eyJpYXQiOjE3Mjg1NDU1NDgsImp0aSI6Ijg3OGMzYWNiLTY2OTEtNGE4OC1iODY5LTFiNDM5MjZkNzc5ZCIsImlzcyI6Imh0dHBzOi8vc3NvLnJlZGhhdC5jb20vYXV0aC9yZWFsbXMvcmVkaGF0LWV4dGVybmFsIiwiYXVkIjoiaHR0cHM6Ly9zc28ucmVkaGF0LmNvbS9hdXRoL3JlYWxtcy9yZWRoYXQtZXh0ZXJuYWwiLCJzdWIiOiJmOjUyOGQ3NmZmLWY3MDgtNDNlZC04Y2Q1LWZlMTZmNGZlMGNlNjpzdW5kZWVwX3NvbSIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJjbG91ZC1zZXJ2aWNlcyIsIm5vbmNlIjoiYTQzNWJhOGUtMjlhZC00Yjc0LWJkMzEtMDNmODQwNjZjZGM1Iiwic2lkIjoiYTcxYzVhZTMtYThjNC00N2Q4LTgwMGQtNzViYTdhMjYxMzhkIiwic2NvcGUiOiJvcGVuaWQgYmFzaWMgYXBpLmlhbS5zZXJ2aWNlX2FjY291bnRzIHJvbGVzIHdlYi1vcmlnaW5zIGNsaWVudF90eXBlLnByZV9rYzI1IG9mZmxpbmVfYWNjZXNzIn0.ZahLN0u7e4HuJx5rfAhgd34i1S2tNQcY9GS4VShYmKOCb9hmtxHinTuUmdr5kfHk2Fwi5HPoBuDaP4NoDQzu9Q"   -- logined using token
+   33  #rosa whoami --- whoami
+   34  rosa whoami
+   35  history ? day04-2
+   36  history > day04-2
+   37  rosa completion bash > rosa_completion
+   38  cp rosa_completion /etc/bash_completion.d/
+   39  source rosa_completion 
+   40  rosa list 
+   41  #rosa auto completion added
+   42  ll
+   43  ll aws
+   44  ll
+   45  mkdir rosa-iam-policies
+   46  cd rosa-iam-policies/
+   47  ll
+   48  rosa create account-roles -h
+   49  rosa create account-roles -h | less
+   50  #rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+   51  which oc
+   52  oc version 
+   53  #can communicate with 4.12 above cluster
+   54  #rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit--- create policies
+   55  rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+   56  ll
+   57  #some files create in the directory
+   58  ll
+   59  #these policies are to be added in AWS IAM
+   60  #no need to updload this to aws as json, if mode was auto this will done in auto
+   61  #the above commands are to be run one by one
+   62  ll
+   63  git clone https://github.com/sanjurh/geojit/blob/main/commands.txt
+   64  git clone https://github.com/sanjurajrh/geojit/blob/main/commands.txt
+   65  wget clone https://github.com/sanjurajrh/geojit/blob/main/commands.txt
+   66  ll
+   67  vim commands.txt 
+   68  rm -rf commands.txt 
+   69  wget https://github.com/sanjurajrh/geojit/blob/main/commands.txt
+   70  ll
+   71  vim commands.txt 
+   72  >commands.txt 
+   73  vim commands.txt 
+   74  ll
+   75  #sed -i 's/<search regex>/<replacement>/g' <input file>
+   76  vim commands.txt 
+   77  #sed -i 's/cs220lws/cs220geojit/g' commands.txt 
+   78  vim commands.txt 
+   79  cat commands.txt | grep -i geojit
+   80  sed -i 's/cs220lws/cs220geojit/g' commands.txt 
+   81  cat commands.txt | grep -i geojit
+   82  vim commands.txt 
+   83  head commands.txt 
+   84  osa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+   85  rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+   86  rosa list account-roles
+   87  ll
+   88  date
+   89  vim commands.txt 
+   90  history 
+   91  head commands.txt 
+   92  >commands.txt 
+   93  vim commands.txt 
+   94  sed -i 's/cs220lws/cs220geojit/g' commands.txt 
+   95  head commands.txt 
+   96  aws iam create-role --assume-role-policy-document file://sts_installer_trust_policy.json --role-name cs220geojit-Installer-Role --tags Key=red-hat-managed,Value=true Key=rosa_role_type,Value=installer  Key=rosa_role_prefix,Value=cs220geojit Key=rosa_openshift_version,Value=4.15
+   97  rosa list account-roles 
+   98  #first one applied
+   99  aws iam create-policy --policy-document file://sts_installer_permission_policy.json --policy-name cs220geojit-Installer-Role-Policy --tags Key=red-hat-managed,Value=true Key=rosa_role_type,Value=installer Key=rosa_role_prefix,Value=cs220geojit Key=rosa_openshift_version,Value=4.15
+  100  rosa list account-roles 
+  101  rosa list -h
+  102  #first policy applied
+  103  rosa delete account-roles -p css220geojit
+  104  rosa list account-roles 
+  105  rosa whoami 
+  106  rosa list account-roles 
+  107  rosa delete account-roles -p cs220geojit
+  108  rosa create account-roles --mode manual --classic --version 4.15 --prefix cs220geojit
+  109  >comm
+  110  ll
+  111  >commands.txt 
+  112  vim commands.txt 
+  113  rm -rf comm
+  114  ll
+  115  cat commands.txt 
+  116  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-Installer-Role-Policy --role-name cs220geojit-Installer-Role
+  117  aws iam create-role --assume-role-policy-document file://sts_instance_controlplane_trust_policy.json --role-name cs220geojit-ControlPlane-Role --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit Key=rosa_role_type,Value=instance_controlplane
+  118  aws iam create-policy --policy-document file://sts_instance_controlplane_permission_policy.json --policy-name cs220geojit-ControlPlane-Role-Policy --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit Key=rosa_role_type,Value=instance_controlplane
+  119  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-ControlPlane-Role-Policy --role-name cs220geojit-ControlPlane-Role
+  120  aws iam create-role --assume-role-policy-document file://sts_instance_worker_trust_policy.json --role-name cs220geojit-Worker-Role --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit Key=rosa_role_type,Value=instance_worker
+  121  aws iam create-policy --policy-document file://sts_instance_worker_permission_policy.json --policy-name cs220geojit-Worker-Role-Policy --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit Key=rosa_role_type,Value=instance_worker
+  122  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-Worker-Role-Policy --role-name cs220geojit-Worker-Role
+  123  aws iam create-role --assume-role-policy-document file://sts_support_trust_policy.json --role-name cs220geojit-Support-Role --tags Key=red-hat-managed,Value=true Key=rosa_role_type,Value=support Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit
+  124  aws iam create-policy --policy-document file://sts_support_permission_policy.json --policy-name cs220geojit-Support-Role-Policy --tags Key=red-hat-managed,Value=true Key=rosa_role_type,Value=support Key=rosa_openshift_version,Value=4.15 Key=rosa_role_prefix,Value=cs220geojit
+  125  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-Support-Role-Policy --role-name cs220geojit-Support-Role
+  126  rosa list account-roles 
+  127  #rosa list account-roles  -- will list 4 roles
+  128  #rosa create oidc-config --mode manual --managed=false --prefix cs220geojit
+  129  #our user should have permission to create cluster,we need to add it using oidc
+  130  rosa whoami 
+  131  rosa create oidc-config --mode manual --managed=false --prefix cs220geojit
+  132  ll
+  133  cd ..
+  134  ll
+  135  mkdir oidc
+  136  cd oidc/
+  137  rosa create oidc-config --mode manual --managed=false --prefix cs220geojit
+  138  ll
+  139  ll ../rosa-iam-policies/
+  140  ll
+  141  ll ../rosa-iam-policies/
+  142  ll
+  143  #ignore error and some json files are created
+  144  ll
+  145  vim command.txt
+  146  aws s3api create-bucket --bucket cs220geojit-oidc-a3q9 --create-bucket-configuration LocationConstraint=ap-southeast-2 --region ap-southeast-2
+  147  aws s3api put-bucket-tagging --bucket cs220geojit-oidc-a3q9 --tagging 'TagSet=[{Key=red-hat-managed,Value=true}]'
+  148  aws s3api put-public-access-block --bucket cs220geojit-oidc-a3q9 --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=false,RestrictPublicBuckets=false
+  149  aws s3api put-bucket-policy --bucket cs220geojit-oidc-a3q9 --policy file://readOnlyPolicy-cs220geojit-oidc-a3q9.json
+  150  rm readOnlyPolicy-cs220geojit-oidc-a3q9.json
+  151  aws s3api put-object --body ./discovery-document-cs220geojit-oidc-a3q9.json --bucket cs220geojit-oidc-a3q9 --key .well-known/openid-configuration --tagging 'red-hat-managed=true'
+  152  rm discovery-document-cs220geojit-oidc-a3q9.json
+  153  aws s3api put-object --body ./jwks-cs220geojit-oidc-a3q9.json --bucket cs220geojit-oidc-a3q9 --key keys.json --tagging 'red-hat-managed=true'
+  154  rm jwks-cs220geojit-oidc-a3q9.json
+  155  aws secretsmanager create-secret --description "Secret for cs220geojit-oidc-a3q9" --name rosa-private-key-cs220geojit-oidc-a3q9 --region ap-southeast-2 --secret-string file://rosa-private-key-cs220geojit-oidc-a3q9.key --tags Key=red-hat-managed,Value=true
+  156  rm rosa-private-key-cs220geojit-oidc-a3q9.key
+  157  URL_BUCKET="https://cs220geojit-oidc-a3q9.s3.ap-southeast-2.amazonaws.com"
+  158  echo $URL_BUCKET
+  159  #set this bucket name for further use
+  160  ARN_SECRET="arn:aws:secretsmanager:ap-southeast-2:972651385053:secret:rosa-private-key-cs220geojit-oidc-a3q9-i65T9s"
+  161  #set the arn secret for further use
+  162  echo $ARN_SECRET
+  163  aws s3 list
+  164  aws s3 ls
+  165  ll
+  166  cd ..
+  167  l
+  168  ll
+  169  rosa list account-roles 
+  170  rosa list account-roles ARN_INSTALLER="arn:aws:iam::972651385053:role/cs220geojit-Installer-Role"
+  171  ARN_INSTALLER="arn:aws:iam::972651385053:role/cs220geojit-Installer-Role"
+  172  echo ARN_INSTALLER
+  173  echo $ARN_INSTALLER
+  174  #set arn installer for further use
+  175  #set arn installer for further use- will get installer arn from "rosa list account-roles"
+  176  ll
+  177  rosa register oidc-config --mode manual --issuer-url $URL_BUCKET --secret-arn $ARN_SECRET --installer-role-arn #ARN_INSTALLER
+  178  rosa register oidc-config --mode manual --issuer-url $URL_BUCKET  --secret-arn $ARN_SECRET --installer-role-arn $ARN_INSTALLER
+  179  #error ocuerd, set id from command rosa list oidc-config
+  180  rosa list oidc-config 
+  181  OIDC_CONFIG_ID="2ealknv852i5vudq7afona3hjbsrjm3h"
+  182  #ser privileage 
+  183  #set privileage 
+  184  mkdir rosa-operator-roles
+  185  cd rosa-operator-roles/
+  186  ll
+  187  rosa create operator-roles -h | less
+  188  echo $ARN_INSTALLER 
+  189  echo $URL_BUCKET 
+  190  echo $OIDC_CONFIG_ID 
+  191  rosa create operator-roles --mode manual --prefix cs220geojit  --oidc-config-id $OIDC_CONFIG_ID --installer-role-arn $ARN_INSTALLER
+  192  vim command.txt
+  193  vim command.txt 
+  194  pwd
+  195  aws iam create-role --assume-role-policy-document file://operator_cloud_network_config_controller_cloud_credentials_policy.json --role-name cs220geojit-openshift-cloud-network-config-controller-cloud-cred --tags Key=red-hat-managed,Value=true Key=operator_name,Value=cloud-credentials Key=operator_namespace,Value=openshift-cloud-network-config-controller
+  196  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-cloud-network-config-controller-cloud-cred --role-name cs220geojit-openshift-cloud-network-config-controller-cloud-cred
+  197  aws iam create-policy --policy-document file://openshift_machine_api_aws_cloud_credentials_policy.json --policy-name cs220geojit-openshift-machine-api-aws-cloud-credentials --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=aws-cloud-credentials Key=operator_namespace,Value=openshift-machine-api
+  198  aws iam create-role --assume-role-policy-document file://operator_machine_api_aws_cloud_credentials_policy.json --role-name cs220geojit-openshift-machine-api-aws-cloud-credentials --tags Key=red-hat-managed,Value=true Key=operator_name,Value=aws-cloud-credentials Key=operator_namespace,Value=openshift-machine-api
+  199  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-machine-api-aws-cloud-credentials --role-name cs220geojit-openshift-machine-api-aws-cloud-credentials
+  200  aws iam create-policy --policy-document file://openshift_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json --policy-name cs220geojit-openshift-cloud-credential-operator-cloud-credential --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=cloud-credential-operator-iam-ro-creds Key=operator_namespace,Value=openshift-cloud-credential-operator
+  201  aws iam create-role --assume-role-policy-document file://operator_cloud_credential_operator_cloud_credential_operator_iam_ro_creds_policy.json --role-name cs220geojit-openshift-cloud-credential-operator-cloud-credential --tags Key=red-hat-managed,Value=true Key=operator_name,Value=cloud-credential-operator-iam-ro-creds Key=operator_namespace,Value=openshift-cloud-credential-operator
+  202  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-cloud-credential-operator-cloud-credential --role-name cs220geojit-openshift-cloud-credential-operator-cloud-credential
+  203  aws iam create-policy --policy-document file://openshift_image_registry_installer_cloud_credentials_policy.json --policy-name cs220geojit-openshift-image-registry-installer-cloud-credentials --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=installer-cloud-credentials Key=operator_namespace,Value=openshift-image-registry
+  204  aws iam create-role --assume-role-policy-document file://operator_image_registry_installer_cloud_credentials_policy.json --role-name cs220geojit-openshift-image-registry-installer-cloud-credentials --tags Key=red-hat-managed,Value=true Key=operator_name,Value=installer-cloud-credentials Key=operator_namespace,Value=openshift-image-registry
+  205  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-image-registry-installer-cloud-credentials --role-name cs220geojit-openshift-image-registry-installer-cloud-credentials
+  206  aws iam create-policy --policy-document file://openshift_ingress_operator_cloud_credentials_policy.json --policy-name cs220geojit-openshift-ingress-operator-cloud-credentials --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=cloud-credentials Key=operator_namespace,Value=openshift-ingress-operator
+  207  aws iam create-role --assume-role-policy-document file://operator_ingress_operator_cloud_credentials_policy.json --role-name cs220geojit-openshift-ingress-operator-cloud-credentials --tags Key=red-hat-managed,Value=true Key=operator_name,Value=cloud-credentials Key=operator_namespace,Value=openshift-ingress-operator
+  208  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-ingress-operator-cloud-credentials --role-name cs220geojit-openshift-ingress-operator-cloud-credentials
+  209  aws iam create-policy --policy-document file://openshift_cluster_csi_drivers_ebs_cloud_credentials_policy.json --policy-name cs220geojit-openshift-cluster-csi-drivers-ebs-cloud-credentials --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=ebs-cloud-credentials Key=operator_namespace,Value=openshift-cluster-csi-drivers
+  210  aws iam create-role --assume-role-policy-document file://operator_cluster_csi_drivers_ebs_cloud_credentials_policy.json --role-name cs220geojit-openshift-cluster-csi-drivers-ebs-cloud-credentials --tags Key=red-hat-managed,Value=true Key=operator_name,Value=ebs-cloud-credentials Key=operator_namespace,Value=openshift-cluster-csi-drivers
+  211  aws iam attach-role-policy --policy-arn arn:aws:iam::972651385053:policy/cs220geojit-openshift-cluster-csi-drivers-ebs-cloud-credentials --role-name cs220geojit-openshift-cluster-csi-drivers-ebs-cloud-credentials
+  212  rosa list operator-roles 
+  213  rosa list operator-roles --prefix cs220geojit
+  214  #rosa list operator-roles --prefix cs220geojit --- will show 
+  215  echo $SUFFIX
+  216  SUBNET=$(aws ec2 describe-subnets  --filters "Name=tag:Name,Values=cs220$SUFFIX-private-subnet"  --output text --query "Subnets[0].SubnetId")
+  217  echo $SUBNET 
+  218  unset SUBNET 
+  219  echo $SUBNET 
+  220  printenv | grep SUBNET
+  221  SUBNET=$(aws ec2 describe-subnets  --filters "Name=tag:Name,Values=cs220geojit-private-subnet"  --output text --query "Subnets[0].SubnetId")
+  222  echo $SUBNET 
+  223  CIDR=$(aws ec2 describe-vpcs --filters "Name=tag:Name,Values=cs220geojit-private-vpc" --output text --query "Vpcs[0].CidrBlock")
+  224  echo $CIDR 
+  225  rosa list oidc-config 
+  226  ##page no 54
+  227  echo $OIDC_CONFIG_ID 
+  228  rosa list account-roles 
+  229  #oidc is using for install with operator
+  230  #oidc is using for install cluster with operator
+  231  rosa list versions 
+  232  rosa list versions | less
+  233  SUFFIX=geojit
+  234  echo $SUFFIX 
+  235  rosa create cluster --sts --private-link --cluster-name cs220$SUFFIX  --operator-roles-prefix cs220$SUFFIX --version 4.14.21  --oidc-config-id $OIDC_CONFIG_ID --subnet-ids $SUBNET --machine-cidr $CIDR  --role-arn $ARN_INSTALLER --support-role-arn $ARN_SUPPORT  --controlplane-iam-role $ARN_CONTROL --worker-iam-role $ARN_COMPUTE  --tags "redhattraining:rosa-cluster-id cs220$SUFFIX, \
+  236   redhattraining:course-sku CS220" --dry-run
+  237  rosa list versions | grep -i yes
+  238  #rosa list versions | grep -i yes --- select only "yes" version
+  239  echo $OIDC_CONFIG_ID
+  240  echo $SUBNET
+  241  eho $CIDR 
+  242  eho $CIDR
+  243  echo $CIDR
+  244  echo $ARN_INSTALLER 
+  245  echo $ARN_SUPPORT
+  246  rosa list oidc-config 
+  247  rosa list account-roles 
+  248  #set variable from rosa list account-roles
+  249  echo $ARN_INSTALLER
+  250  ARN_SUPPORT="arn:aws:iam::972651385053:role/cs220geojit-Support-Role"
+  251  echo $ARN_SUPPORT 
+  252  echo $ARN_CONTROL
+  253  ARN_CONTROL="arn:aws:iam::972651385053:role/cs220geojit-ControlPlane-Role"
+  254  echo $ARN_COMPUTE
+  255  ARN_COMPUTE="arn:aws:iam::972651385053:role/cs220geojit-Worker-Role"
+  256  echo $ARN_COMPUTE
+  257  rosa create cluster --sts --private-link --cluster-name cs220$SUFFIX  --operator-roles-prefix cs220$SUFFIX --version 4.15.35 --oidc-config-id $OIDC_CONFIG_ID --subnet-ids $SUBNET --machine-cidr $CIDR  --role-arn $ARN_INSTALLER --support-role-arn $ARN_SUPPORT  --controlplane-iam-role $ARN_CONTROL --worker-iam-role $ARN_COMPUTE  --tags "redhattraining:rosa-cluster-id cs220$SUFFIX, \
+  258   redhattraining:course-sku CS220" --dry-run
+  259  rosa list clusters 
+  260  #dry run is fine, now run without dryrun
+  261  rosa create cluster --sts --private-link --cluster-name cs220$SUFFIX  --operator-roles-prefix cs220$SUFFIX --version 4.15.35 --oidc-config-id $OIDC_CONFIG_ID --subnet-ids $SUBNET --machine-cidr $CIDR  --role-arn $ARN_INSTALLER --support-role-arn $ARN_SUPPORT  --controlplane-iam-role $ARN_CONTROL --worker-iam-role $ARN_COMPUTE  --tags "redhattraining:rosa-cluster-id cs220$SUFFIX, \
+  262   redhattraining:course-sku CS220"
+  263  rosa list clusters 
+  264  #rosa list clusters  -- can see creatd clusters
+  265  rosa describe cluster -c cs220geojit
+  266  rosa logs install -c cs220geojit --watch
+  267  rosa describe cluster -c cs220geojit
+  268  #installation is on hold because oidc provides is not found
+  269  rosa list oidc-providers 
+  270  #rosa list oidc-providers -- cheking for any provider
+  271  rosa create oidc-provider --cluster cs220geojit
+  272  #rosa create oidc-provider --cluster cs220geojit --created with auto mode
+  273  rosa describe cluster -c cs220geojit
+  274  rosa describe cluster -c cs220geojit watch
+  275  rosa describe cluster -c cs220geojit
+  276  rosa logs install -c cs220geojit --watch
+  277  rosa describe cluster -c cs220geojit
+  278  rosa describe cluster -c cs220geojit | grep state
+  279  rosa describe cluster -c cs220geojit | grep State
+  280  ##rosa describe cluster -c cs220geojit | grep State  -- installing state
+  281  #will take 45 min to up
+  282  rosa describe cluster -c cs220geojit
+  283  #cluster is up now
+  284  cd ..
+  285  ll
+  286  history >day04-2
+  287  mkdir day04
+  288  mv day04* day04
+  289  ll
+  290  ll day04/
+  291  mv privatelink-with-network-firewall.yaml  day04/
+  292  mv rosa* day04/
+  293  ll
+  294  ll oidc/
+  295  mc oidc/ day04/
+  296  mv oidc/ day04/
+  297  ll
+  298  cd day04/
+  299  ll
+  300  cd ..
+  301  ll
+  302  git clone https://github.com/Sundeep-Soman/d0280.git
+  303  ll
+  304  ll do280
+  305  pwd
+  306  ll
+  307  ll d0280
+  308  cp -r day04/ d0280
+  309  ll
+  310  cd d0280/
+  311  ll
+  312  git add .
+  313  git commit -m "04"
+  314  git push -i origin 
+  315  git push origin main
+  316  git push
+  317  git remote show origin 
+  318  git branch 
+  319  git push -u origin main
+  320  cat tk.txt 
+  321  ll
+  322  git push
+  323  ll
+  324  ll -a
+  325  git push -u origin main
+  326  git push -h
+  327  git push -h | less
+  328  ll
+  329  git push
+  330  ll
+  331  cd day04
+  332  ll
+  333  cat day04-2
+  334  :1
+  335  vim day04-2
+  336  ll
+  337  cd ..
+  338  ll
+  339  day 05
+  340  mkdir day 05
+  341  l
+  342  ll
+  343  rm -rf day 05
+  344  ;;
+  345  ll
+  346  mkdir day05
+  347  cd day05
+  348  ll
+  349  #####DAY05
+  350  rosa cluster list
+  351  rosa list clusters 
+  352  history 
+  353  rosa completion bash > rosa_completion
+  354  cp rosa_completion /etc/bash_completion.d/
+  355  sudo cp rosa_completion /etc/bash_completion.d/
+  356  source rosa_completion 
+  357  complete -C '/usr/local/bin/aws_completer' aws
+  358  aws 
+  359  ll
+  360  mkdir console
+  361  cd console/
+  362  rosa whoami 
+  363  #take the file for the stack creation
+  364  wget https://raw.githubusercontent.com/RedHatTraining/CS22X-apps/main/aws/cloudformation/customer-vpc.yaml
+  365  ll
+  366  aws cloudformation create-stack --stack-name customer-vpc-$SUFFIX  --template-body file://./customer-vpc.yaml  --parameters ParameterKey=RosaStackName,ParameterValue=ROSA-infra-$SUFFIX
+  367  aws cloudformation describe-stacks --stack-name customer-vpc-$SUFFIX  --output text --query "Stacks[0].StackStatus"
+  368  vim customer-vpc.yaml
+  369  aws cloudformation describe-stacks --stack-name customer-vpc-$SUFFIX  --output text --query "Stacks[0].StackStatus"
+  370  ll
+  371  vim customer-vpc.yaml 
+  372  aws route53 list-hosted-zones --hosted-zone-type PrivateHostedZone
+  373  R53_HZ="/hostedzone/Z035599116URVV25PVVOA"
+  374  echo $R53_HZ 
+  375  AWS_REG=$(aws configure get region)
+  376  echo $AWS_REG 
+  377  ehco $SUFFIX 
+  378  echo $SUFFIX 
+  379  CUST_VPC=$(aws ec2 describe-vpcs --output text --query "Vpcs[0].VpcId" \
+  380   --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-vpc")
+  381  echo CUST_VPC
+  382  echo $CUST_VPC
+  383  aws route53 associate-vpc-with-hosted-zone --hosted-zone-id $R53_HZ  --vpc VPCRegion=$AWS_REG,VPCId=$CUST_VPC
+  384  aws route53 get-change --id /change/C003682923HU8W78GX2A3
+  385  aws ec2 describe-instance-connect-endpoints --output yaml  --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-connect-endpoint"
+  386  aws route53 get-change --id /change/C003682923HU8W78GX2A3
+  387  aws ec2 describe-instance-connect-endpoints --output yaml  --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-connect-endpoint"
+  388  EC2_INST=$(aws ec2 describe-instances --output text \
+  389   --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-bastion" \
+  390   --query "Reservations[].Instances[].InstanceId")
+  391  aws ec2-instance-connect ssh --instance-id $EC2_INST
+  392  exit
+  393  ll
+  394  cat day04 
+  395  ssh workstation; exit
+  396  ssh workstation; exit
+  397  ssh workstation; exit
+  398  ssh workstation; exit
+  399  ll
+  400  cd day04/
+  401  ll
+  402  cat day04-1
+  403  ll
+  404  cd day04/
+  405  ll
+  406  cat day04-1
+  407  w
+  408  aws
+  409  cat /etc/os-release 
+  410  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  411  unzip awscliv2.zip
+  412  sudo ./aws/install
+  413  aws 
+  414  aws --version
+  415  aws configure
+  416  cat .aws/credentials 
+  417  aws -h
+  418  aws help
+  419  aws cofigure get region
+  420  #adding auto complete
+  421  ls /usr/local/bin
+  422  complete -C '/usr/local/bin/aws_completer' aws
+  423  aws configure get region
+  424  #region set 
+  425  aws sts get-caller-identity 
+  426  #accout details
+  427  wget https://raw.githubusercontent.com/RedHatTraining/CS22X-apps/main/aws/
+  428  ll
+  429  m
+  430  https://raw.githubusercontent.com/RedHatTraining/CS22X-apps/main/aws/
+  431  cloudformation/privatelink-with-network-firewall.yaml
+  432  wget https://raw.githubusercontent.com/RedHatTraining/CS22X-apps/main/aws/cloudformation/privatelink-with-network-firewall.yaml
+  433  vim privatelink-with-network-firewall.yaml 
+  434  #plan the cluster name
+  435  #aws cloudformation create-stack -- creating multiple aws resources using a template
+  436  aws cloudformation create-stack --stack-name ROSA-infra-geojit --template-body file://./privatelink-with-network-firewall.yaml --parameters ParameterKey=RosaClusterName,ParameterValue=cs220geojit
+  437  aws cloudformation list-stacks
+  438  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text
+  439  #aws cloudformation create-stack --stack-name ROSA-infra-geojit --template-body file://./privatelink-with-network-firewall.yaml --parameters ParameterKey=RosaClusterName,ParameterValue=cs220geojit --- created the cluster with name "geojit", located network file, and cs220geojit will show on redhat cluster
+  440  history 
+  441  #aws cloudformation list-stacks -- will show stack
+  442  #aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text -- detailed output
+  443  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text
+  444  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query 
+  445  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStatus
+  446  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text --query "Stacks[0].StacksStatus"
+  447  aws cloudformation describe-stacks --stack-name ROSA-infra-geojit --output text
+  448  history > day04
+  449  curl myapp-default.apps.cs220geojit.6opd.p1.openshiftapps.com
+  450  nslookup *.apps.cs220geojit.6opd.p1.openshiftapps.com
+  451  ll
+  452  cat commands.txt 
+  453  ll
+  454  cd ../oidc/
+  455  ll
+  456  cat command.txt 
+  457  vim command.txt 
+  458  cd /home/student/rosa-operator-roles
+  459  ll
+  460  less command.txt 
+  461  pwd
+  462  aws iam create-policy --policy-document file://openshift_cloud_network_config_controller_cloud_credentials_policy.json --policy-name cs220geojit-openshift-cloud-network-config-controller-cloud-cred --tags Key=red-hat-managed,Value=true Key=rosa_openshift_version,Value=4.16 Key=rosa_role_prefix,Value=cs220geojit Key=operator_name,Value=cloud-credentials Key=operator_namespace,Value=openshift-cloud-network-config-controller
+  463  rosa logs install -c cs220geojit --watch
+  464  cd 
+  465  l
+  466  ll
+  467  cat d0280/tk.txt 
+  468  ll
+  469  cd day04/
+  470  ll
+  471  cd ..
+  472  cd d0280/
+  473  cd ..
+  474  ll
+  475  cd day04/
+  476  ll
+  477  cat day04-1
+  478  cat day04-2 
+  479  less day04-2 
+  480  less day04-1
+  481  aws resourcegroupstaggingapi get-resources --output text  --tag-filters "Key=redhattraining:rosa-cluster-id,Values=cs220$SUFFIX"  "Key=CSIVolumeName"
+  482  SUFFIX=geojit
+  483  aws resourcegroupstaggingapi get-resources --output text  --tag-filters "Key=redhattraining:rosa-cluster-id,Values=cs220$SUFFIX"  "Key=CSIVolumeName"
+  484  history 
+  485  ### lab--80
+  486  SUFFIX=geojit
+  487  echo $SUFFIX 
+  488  rosa logs install -c cs220$SUFFIX --watch
+  489  rosa describe cluster -c cs220$SUFFIX
+  490  aws resourcegroupstaggingapi get-resources --output text  --tag-filters "Key=redhattraining:rosa-cluster-id,alues=cs220$SUFFIX"
+  491  aws resourcegroupstaggingapi get-resources --output text  --tag-filters "Key=redhattraining:rosa-cluster-id,values=cs220$SUFFIX"
+  492  aws resourcegroupstaggingapi get-resources --output text  --tag-filters "Key=redhattraining:rosa-cluster-id,Values=cs220$SUFFIX"  "Key=CSIVolumeName"
+  493  rosa describe cluster -c cs220$SUFFIX
+  494  #Access a PrivateLink ROSA Cluster by
+  495  Using a Bastion Host
+  496  #Access a PrivateLink ROSA Cluster by Using a Bastion Host
+  497  ll
+  498  #need to define netowork acls(ssh)
+  499  rosa lisll
+  500  ll
+  501  source rosa
+  502  source rosa_completion 
+  503  complete -C '/usr/local/bin/aws_completer' aws
+  504  ll
+  505  cd ..
+  506  ll
+  507  cat ~/.aws/config 
+  508  #loged in with bastion host and connected to cluster
+  509  aws ec2-instance-connect open-tunnel --instance-id $EC2_INST  --local-port 3389 --remote-port 3389
+  510  ll
+  511  mkdir aws-vpn
+  512  cd aws
+  513  cd ../aws-vpn/
+  514  ll
+  515  psd
+  516  pwd
+  517  ##PAGE 97
+  518  ll
+  519  echo $SUFFIX 
+  520  #Access a PrivateLink ROSA Cluster by
+  521  #Access a PrivateLink ROSA Cluster by Using a Client VPN
+  522  l
+  523  wget https://raw.githubusercontent.com/RedHatTraining/CS22X-apps/main/aws/cloudformation/customer-vpc.yaml
+  524  ll
+  525  vim customer-vpc.yaml 
+  526  ll
+  527  vim customer-vpc.yaml 
+  528  wget https://github.com/RedHatTraining/CS22X-apps/raw/main/certificates.zip
+  529  ll
+  530  unzip certificates.zip 
+  531  ll
+  532  #ACM_SERVER_CERT=$(aws acm import-certificate \
+  533   --certificate fileb://certificates/server.crt  --private-key fileb://certificates/server.key  --certificate-chain fileb://certificate#sA/CcMa_.ScErRtV E\R
+  534  _ C-E-RoTu=t$p(uatw st eaxctm  -i-mqpuoerrty- cCeerrttiiffiiccaattee A\r
+  535  n )--certificate fileb://certificates/server.crt \
+  536   --private-key fileb://certificates/server.key  --certificate-chain fileb://certificates/ca.crt \
+  537  ACM_SERVER_CERT=$(aws acm import-certificate \
+  538   --certificate fileb://certificates/server.crt \
+  539   --private-key fileb://certificates/server.key \
+  540   --certificate-chain fileb://certificates/ca.crt \
+  541   --output text --query CertificateArn)
+  542  ll
+  543  echo $ACM_SERVER_CERT 
+  544  unset ACM_SERVER_CERT 
+  545  cd certificates/
+  546  ll
+  547  ACM_SERVER_CERT=$(aws acm import-certificate \
+  548   --certificate fileb://certificates/server.crt \
+  549   --private-key fileb://certificates/server.key \
+  550   --certificate-chain fileb://certificates/ca.crt \
+  551   --output text --query CertificateArn)
+  552  echo $ACM_SERVER_CERT 
+  553  ACM_SERVER_CERT=$(aws acm import-certificate \
+  554   --certificate fileb://certificates/server.crt \
+  555   --private-key fileb://certificates/server.key \
+  556   --certificate-chain fileb://certificates/ca.crt \
+  557   --output text --query CertificateArn)
+  558  ACM_SERVER_CERT=$(aws acm import-certificate \
+  559   --certificate fileb://certificates/server.crt \
+  560   --private-key fileb://certificates/server.key \
+  561   --certificate-chain fileb://certificates/ca.crt \
+  562   --output text --query CertificateArn)
+  563  cd ..
+  564  ACM_SERVER_CERT=$(aws acm import-certificate \
+  565   --certificate fileb://certificates/server.crt \
+  566   --private-key fileb://certificates/server.key \
+  567   --certificate-chain fileb://certificates/ca.crt \
+  568   --output text --query CertificateArn)
+  569  echo $ACM_SERVER_CERT 
+  570   ACM_CLIENT_CERT=$(aws acm import-certificate \
+  571   --certificate fileb://certificates/vpn-client.crt \
+  572   --private-key fileb://certificates/vpn-client.key \
+  573   --certificate-chain fileb://certificates/ca.crt \
+  574   --output text --query CertificateArn)
+  575  echo $ACM_CLIENT_CERT 
+  576  echo $ACM_SERVER_CERT 
+  577  aws cloudformation create-stack --stack-name vpn-$SUFFIX  --template-body file://./vpn.yaml  --parameters ParameterKey=RosaStackName,ParameterValue=ROSA-infra-$SUFFIX  "ParameterKey=pVpnServerCertARN,ParameterValue=$ACM_SERVER_CERT"  "ParameterKey=pVpnClientCertARN,ParameterValue=$ACM_CLIENT_CERT"
+  578  ll
+  579  wget aws cloudformation create-stack --stack-name vpn-$SUFFIX  --template-body file://./vpn.yaml  --parameters ParameterKey=RosaStackName,ParameterValue=ROSA-infra-$SUFFIX  "ParameterKey=pVpnServerCertARN,ParameterValue=$ACM_SERVER_CERT"  "ParameterKey=pVpnClientCertARN,ParameterValue=$ACM_CLIENT_CERT"
+  580  ll
+  581  vim customer-vpc.yaml 
+  582  aws cloudformation create-stack --stack-name vpn-$SUFFIX  --template-body file://./vpn.yaml  --parameters ParameterKey=RosaStackName,ParameterValue=ROSA-infra-$SUFFIX  "ParameterKey=pVpnServerCertARN,ParameterValue=$ACM_SERVER_CERT"  "ParameterKey=pVpnClientCertARN,ParameterValue=$ACM_CLIENT_CERT"
+  583  ll
+  584  rm -rm customer-vpc.yaml 
+  585  rm -rf customer-vpc.yaml 
+  586  wget aws cloudformation create-stack --stack-name vpn-$SUFFIX  --template-body file://./vpn.yaml  --parameters ParameterKey=RosaStackName,ParameterValue=ROSA-infra-$SUFFIX  "ParameterKey=pVpnServerCertARN,ParameterValue=$ACM_SERVER_CERT"  "ParameterKey=pVpnClientCertARN,ParameterValue=$ACM_CLIENT_CERT"
+  587  wget https://raw.githubusercontent.com/RedHatTraining/CS22X-apps/main/aws/cloudformation/vpn.yaml
+  588  ll
+  589  aws cloudformation create-stack --stack-name vpn-$SUFFIX  --template-body file://./vpn.yaml  --parameters ParameterKey=RosaStackName,ParameterValue=ROSA-infra-$SUFFIX  "ParameterKey=pVpnServerCertARN,ParameterValue=$ACM_SERVER_CERT"  "ParameterKey=pVpnClientCertARN,ParameterValue=$ACM_CLIENT_CERT"
+  590  aws cloudformation describe-stacks --stack-name vpn-$SUFFIX  --output text --query "Stacks[0].StackStatus"
+  591  watch -d aws cloudformation describe-stacks --stack-name vpn-$SUFFIX  --output text --query "Stacks[0].StackStatus" 
+  592  aws route53 list-hosted-zones --hosted-zone-type PrivateHostedZone
+  593  R53_HZ="/hostedzone/Z035599116URVV25PVVOA"
+  594  AWS_REG=$(aws configure get region)
+  595  echo $R53_HZ 
+  596  echo $AWS_REG 
+  597  CUST_VPC=$(aws ec2 describe-vpcs --output text --query "Vpcs[0].VpcId" \
+  598   --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-vpc")
+  599  echo  $CUST_VPC 
+  600  aws route53 associate-vpc-with-hosted-zone --hosted-zone-id $R53_HZ  --vpc VPCRegion=$AWS_REG,VPCId=$CUST_VPC
+  601  #already done is last lab
+  602  #my mistake -- page maripoi
+  603  aws cloudformation describe-stacks --stack-name vpn-$SUFFIX  --output text --query "Stacks[0].StackStatus"
+  604  aws resourcegroupstaggingapi get-resources --output text  --tag-filters "Key=redhattraining:course-sku,Values=CS220-VPN"
+  605  VPN_CLIENT_ID=$(aws ec2 describe-client-vpn-endpoints \
+  606   --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-client-vpn-endpoint" \
+  607   --output text --query "ClientVpnEndpoints[0].ClientVpnEndpointId")
+  608  echo  $VPN_CLIENT_ID 
+  609  aws ec2 export-client-vpn-client-configuration --output text  --client-vpn-endpoint-id $VPN_CLIENT_ID > vpn-configuration.ovpn
+  610  ll
+  611  cat vpn-configuration.ovpn 
+  612  ll
+  613  vim vpn-configuration.ovpn 
+  614  cat vpn-configuration.ovpn 
+  615  yum install openvpn
+  616  sudo yum install openvpn
+  617  -----BEGIN PRIVATE KEY-----
+  618  MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCZwElM0BSr4oBM
+  619  paUfONrudOS6pnvr3nPY+5Sn7TqJbyZzZzAjQmjj8DtQyuzIn91KT7w4XxtYcqD2
+  620  DHZeZfOdahdQG4fS8WRLYRQsyCDMAdbaDl49xpxUy0QCj5QLt/TAHTZ3Emuq9sxn
+  621  vjE74Dm6nI1iFvTGRaQXjoiL/wK4kbtdAUKP9wIw7fDS1rRkZVbWeOFYlKmgU+Wc
+  622  buVWJH6FtRQHwlYWxZDpWSeSk5/XAriFm+bgldSFHGBmQHyJG5QIYAq4PwcGqZ0Q
+  623  /msV+IPuL1Wx4GOvVw6goLUqY9Ar9nnqfUEIb2Vv1GlyVaSmkl9M/ziJFbx5XMkm
+  624  cLi1T9sRAgMBAAECggEAHMHsc+OPmj65RJzO77IQsP1IMukk0I9BF9qmiWpDwqT5
+  625  iihIxq+LMuciERCDjVrpZxbW26xeTwLRvHPESA/FqzHGvoMHuprP6ZF01pNwHvhR
+  626  GWQKmH9niiyiwd/dDvwPWUedglP9s3KJ9PWL++kKoy7Y+vnUOqmX8ZgFTjoaZi8B
+  627  dvN1O77PXa3ewlxgXgGau1DCsh2K/5jneD7BtKpqLmdsk4+SDWLiKO2BetTF9L3o
+  628  lCoM5tsGMmzegcfW/wvff55wjEAaB/dMLlz9vOeeWnMpk6wSEnE49UD+GTVq/vFQ
+  629  n8o2Bqi/sDB8STIOets3cQS1wr1M84VCxQ2xy7W34QKBgQDVCMRR8uIMwCM9TCrv
+  630  7+uRAJu6brpZ2E56hUSwrjFgUwXwJ/K/qObKi/174gXVwCtOouZeo3zIj6AIn9Bm
+  631  ujkiW+InJ60OcTBl2bT9sxrMTTolQdsT/LdoUdEjJ10udmYawWPv6OiWGivXyosv
+  632  zN0AzqkNk/ch/Fm6ilWPaALE1QKBgQC4wqeyWmsP/seEiBE//6Y9sTOc5EA0MLIG
+  633  nOdAZ7T9hI8VRsR8OGMGG4mmQLExWfdsLmwqCA2fNHNX2FluLA1e7idB3SkK1dpd
+  634  0Ti3vI6KGXhs/BQPnStWJNWZO8yxvakbmPrJsOg1BYrnPvx11XRUQVnpJEERrcsU
+  635  vkNd5q+LTQKBgA1LgMUEfWsCSrC2oi9bL75a5V0bL/IPd8ZZrtG/7UDvrX0xYQrp
+  636  BY46clVa47ZVSd6cd/gMB+uUWw5uutjOYmZsiY6cAUbXdYfFsG/sz41UfH56v6td
+  637  qCyQfpbNDBmsNe8RhqUgSfOkKnxLHaicBmbYfuBkDZZHY2oq2/AZM6MJAoGAL5rI
+  638  BqZRa5+j3LwKZckDFmYv/D67ZDcfx6Bp3Shbc+7RxxOi0LbenNY/kzyb6zFZFOCp
+  639  MfM9P0YOahXuhPqIv2rxZoELcCVFzGJ6EK1etKp3Yu1YZeWDIwD+oCrORQWvKtMx
+  640  2wHf8rlo3shV2C6VeJgWCII02c9DwiZ7yRgFJwkCgYBmOAIehfHHJDWE49bv4C4N
+  641  7bc2qnAwnB8VM4eVwn1fFj2UR8zL+0xvsoeoivstav/hlH/u0cEdt3fS8sAOaU7Y
+  642  xsW0TLj3yDrN5/QRS1mWCTB54hTjsgItDLRSkQPpj9rFDal3hIdVo6DUV+HgVnbd
+  643  JpWi7E0bUl5K5nZcO+lXIw==
+  644  -----END PRIVATE KEY-----
+  645  sudo openvpn --config vpn-configuration.ovpn
+  646  #using VPN both ssh access to bastion and webconsole from workstation browser
+  647  oc whooc 
+  648  oc whoami 
+  649  rosa whoami 
+  650  history | grep -i -t
+  651  history | grep -i "-t"
+  652  history | grep -i "--t"
+  653  history | grep -i login
+  654  ll
+  655  cat bastion-key.pem 
+  656  ll
+  657  history 
+  658  sudo openvpn --config vpn-configuration.ovpn
+  659  ll
+  660  cat certificates/vpn-client.crt 
+  661  cat certificates/vpn-client.key 
+  662  sudo vim /etc/resolv.conf 
+  663  EC2_KEY_PAIR=$(aws ec2 describe-key-pairs \
+  664   --filters Name=key-name,Values=cs220$SUFFIX-ec2KeyPairVpn \
+  665   --output text --query "KeyPairs[0].KeyPairId")
+  666  echo $EC2_KEY_PAIR 
+  667  SUFFIX=geojit
+  668  echo $EC2_KEY_PAIR 
+  669  EC2_KEY_PAIR=$(aws ec2 describe-key-pairs \
+  670   --filters Name=key-name,Values=cs220$SUFFIX-ec2KeyPairVpn \
+  671   --output text --query "KeyPairs[0].KeyPairId")
+  672  echo $EC2_KEY_PAIR 
+  673  aws ssm get-parameter --name /ec2/keypair/$EC2_KEY_PAIR --with-decryption  --output text --query Parameter.Value > bastion-key.pem
+  674  cat bastion-key.pem 
+  675  chmod 0400 bastion-key.pem
+  676  EC2_IP=$(aws ec2 describe-instances --output text \
+  677   --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-bastion" \
+  678   --query 'Reservations[0].Instances[0].{"PrivateIP":PrivateIpAddress}')
+  679  echo $EC2_IP 
+  680  ssh -i bastion-key.pem ec2-user@$EC2_IP
+  681  ssh -i bastion-key.pem ec2-user@$EC2_IP -vvv
+  682  history 
+  683  ll
+  684  oc login -u cluster-admin -p Redhattraining123
+  685  rosa describe cluster -c cs220geojit 
+  686  oc login https://api.cs220geojit.6opd.p1.openshiftapps.com:6443-u cluster-admin -p Redhattraining123
+  687  oc login https://api.cs220geojit.6opd.p1.openshiftapps.com:6443 -u cluster-admin -p Redhattraining123
+  688  oc whoami
+  689  ssh -i bastion-key.pem ec2-user@$EC2_IP -vvv
+  690  history 
+  691  EC2_INST=$(aws ec2 describe-instances --output text \
+ --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-bastion" \
+ --query "Reservations[].Instances[].InstanceId")
+  692  aws ec2-instance-connect ssh --instance-id $EC2_INST
+  693  echo $EC2_INST 
+  694  cat ~/.aws/config 
+  695  vim  ~/.aws/config
+  696  ll
+  697  aws ec2 describe-instances
+  698  aws ec2 describe-instances --output text  --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-bastion"  --query "Reservations[].Instances[].InstanceId"
+  699  aws ec2 describe-instances --output text  --filters "Name=tag:Name,Values=cs220$SUFFIX-customer-bastion"
+  700  ll
+  701  cd d0280/
+  702  ll
+  703  cd day0
+  704  cd day05
+  705  ll
+  706  history > day05.txt
